@@ -16,11 +16,14 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     [SerializeField]
     [Tooltip("How high we jump")]
     private float _jumpHeight = 2.0f;
+    private bool _jumping = false;
+    private float _jumpTimer = 0f;
+    private float _groundedTimer = 0f;
+
 
     [SerializeField]
     [Tooltip("How fast we fall")]
     private float _gravity = -9.81f;
-    private bool _jumping = false;
     private bool _firing = false;
 
     [SerializeField]
@@ -68,6 +71,8 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     {
         // Jump if we are grounded
         _jumping = !_jumping;
+        if (!_jumping)
+            _jumpTimer = .2f;
     }
 
     public void OnDash()
@@ -89,15 +94,26 @@ public class PlayerMovement : MonoBehaviour, IDamageable
             CameraShake.Instance.Shake(Random.Range(.01f, .05f));
         }
 
+        // Check jumping
+        if ((_jumping || _jumpTimer > 0f) && _groundedTimer > 0f)
+        {
+            _velocity.y += _jumpHeight;
+
+            _groundedTimer = 0f;
+            _jumpTimer = 0f;
+        }
+
+        // Jump timer, remembers the jump button press for a bit. This makes the jump feel more reactive
+        if (_jumpTimer > 0f)
+            _jumpTimer -= Time.deltaTime;
+        if (_groundedTimer > 0f)
+            _groundedTimer -= Time.deltaTime;
+
         // Check gravity
         if (_characterController.isGrounded && _velocity.y < 0)
         {
             _velocity.y = 0f;
-
-            if (_jumping)
-            {
-                _velocity.y += _jumpHeight;
-            }
+            _groundedTimer = .2f;
         }
 
         // Move the character
