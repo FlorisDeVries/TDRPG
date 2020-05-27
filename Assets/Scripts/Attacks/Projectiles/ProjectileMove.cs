@@ -20,7 +20,7 @@ public class ProjectileMove : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Prefab for the muzzle flash and hit flash")]
-    private GameObject _muzzlePrefab, _hitPrefab;
+    private GameObject _muzzlePrefab = default, _hitPrefab = default;
 
     private void Start()
     {

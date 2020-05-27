@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
+
+/// <summary>
+/// Class that handles all movement logic for the player
+/// </summary>
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour, IDamageable
 {
@@ -24,7 +28,6 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     [SerializeField]
     [Tooltip("How fast we fall")]
     private float _gravity = -9.81f;
-    private bool _firing = false;
 
     [SerializeField]
     [Tooltip("How high we jump")]
@@ -37,27 +40,12 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _moveDirection = Vector3.zero;
 
-    [Header("Projectiles")]
 
-    [SerializeField]
-    [Tooltip("The position for the projectiles to be fired")]
-    private Transform _firePoint = default;
-
-    [SerializeField]
-    [Tooltip("The standard prefab for the shard projectile")]
-    private GameObject _shardPrefab = default;
-
-    private float _fireCooldown = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
-    }
-
-    public void OnFire()
-    {
-        _firing = !_firing;
     }
 
     public void OnMove(InputValue value)
@@ -83,17 +71,6 @@ public class PlayerMovement : MonoBehaviour, IDamageable
 
     public void Update()
     {
-        // Fire rate
-        _fireCooldown -= Time.deltaTime;
-
-        // Firing
-        if (_firing && _firePoint && _fireCooldown < 0f)
-        {
-            ProjectileMove projectile = Instantiate(_shardPrefab, _firePoint.transform.position, _firePoint.transform.rotation).GetComponent<ProjectileMove>();
-            _fireCooldown = 1 / projectile.FireRate;
-            CameraShake.Instance.Shake(Random.Range(.01f, .05f));
-        }
-
         // Check jumping
         if ((_jumping || _jumpTimer > 0f) && _groundedTimer > 0f)
         {

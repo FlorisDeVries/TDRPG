@@ -9691,7 +9691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955cc6acb1d682247a76f169a44ac4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toSpawn: {fileID: 8294645811653754358, guid: a9f1b7dd3b7a0ca44aea8316e4687843,
+  _toSpawn: {fileID: 6005751080076549426, guid: a9f1b7dd3b7a0ca44aea8316e4687843,
     type: 3}
 --- !u!1 &1774777215051990136
 GameObject:

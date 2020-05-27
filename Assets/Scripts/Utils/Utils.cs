@@ -42,12 +42,12 @@ public static class Utils
     /// </summary>
     /// <param name="ypos">What plane the function should default to if nu intersection is found</param>
     /// <returns></returns>
-    public static Vector3 GetInWorldClickPosition(float ypos = 0)
+    public static Vector3 GetInWorldClickPosition(LayerMask mask, float ypos = 0)
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1000000))
+        if (Physics.Raycast(ray, out hit, 1000000, mask))
         {
             return hit.point;
         }
@@ -55,5 +55,13 @@ public static class Utils
         {
             return (GetPlaneIntersection(0));
         }
+    }
+
+    /// <summary>
+    /// Helper function that checks whether a given layer is included in the given layermask
+    /// </summary>
+    public static bool IsInLayerMask(int layer, LayerMask layermask)
+    {
+        return layermask == (layermask | (1 << layer));
     }
 }

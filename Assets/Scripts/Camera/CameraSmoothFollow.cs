@@ -7,7 +7,7 @@ public class CameraSmoothFollow : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("The transform to follow in the scene")]
-    private Transform _target;
+    private Transform _target = default;
 
     [SerializeField]
     [Tooltip("How smooth/fast we should follow the target")]
