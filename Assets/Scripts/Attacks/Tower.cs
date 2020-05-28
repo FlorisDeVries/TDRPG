@@ -14,7 +14,7 @@ public class Tower : AnAttack
 
     protected override void SpawnAttack(Transform firePoint)
     {
-        Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponent<BaseTower>().Setup(this);
+        Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).AddComponent<BaseTower>().Setup(this);
     }
 
     protected override bool CanAttack()

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63df44b0f4fbc424990f400f8be097ba, type: 3}
-  m_Name: Ballista
+  m_Name: Wall
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 19fcea417f7d62d49b41f6a2e8562fa9, type: 3}
-  Prefab: {fileID: 6708891759762325918, guid: a61d67ba1d68092408fce48ac1994a5f, type: 3}
+  Image: {fileID: 21300000, guid: e06e4aba7fa3f4d478d4b15a8bd9e4c0, type: 3}
+  Prefab: {fileID: 5465200300800942126, guid: 9955de4ce829a774db7b51cae197e56f, type: 3}
   Cooldown: 0.1
-  _cost: 10
+  _cost: 5
   HealtPoints: 1

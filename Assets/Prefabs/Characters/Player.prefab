@@ -117,8 +117,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8625476814837810103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9097903228041242288}
   m_Father: {fileID: 8625476815438044560}
@@ -272,7 +272,12 @@ MonoBehaviour:
   _currentAttacks:
   - {fileID: 11400000, guid: 8fa21aae89729ff47b215f61537ef00b, type: 2}
   - {fileID: 11400000, guid: cf8d46781a4196e458424078a099b0a3, type: 2}
+  - {fileID: 11400000, guid: 4c497854b312fb842a9564fbe56bf66f, type: 2}
+  _hotBarPrefab: {fileID: 9204056287220287134, guid: 8990e5db6d3e9cb44b7b8dc0ed8ec716,
+    type: 3}
+  _hotbarParent: {fileID: 0}
   _firePoint: {fileID: 8625476814837810088}
+  _attackIndex: 0
 --- !u!1001 &8625476815066335075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,12 +293,12 @@ PrefabInstance:
     - target: {fileID: 716608622450352595, guid: 22c557d037188f7448f5b27c8cf19e88,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 716608622450352595, guid: 22c557d037188f7448f5b27c8cf19e88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 716608622450352595, guid: 22c557d037188f7448f5b27c8cf19e88,
         type: 3}
@@ -335,10 +340,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 716608622450352604, guid: 22c557d037188f7448f5b27c8cf19e88,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.2509804
+      objectReference: {fileID: 0}
     - target: {fileID: 716608622450352606, guid: 22c557d037188f7448f5b27c8cf19e88,
         type: 3}
       propertyPath: m_Name
       value: Pointer
+      objectReference: {fileID: 0}
+    - target: {fileID: 716608622450352606, guid: 22c557d037188f7448f5b27c8cf19e88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22c557d037188f7448f5b27c8cf19e88, type: 3}
