@@ -34,10 +34,13 @@ public class BaseAttackTower : BaseTower
 
         // Setup attack tower properties (copy them)
         AnAttackTower attackTower = tower as AnAttackTower;
+
+        _attack = attackTower.TowerAttack.Attack;
+        _cooldown = attackTower.TowerAttack.Cooldown;
+
         _targetRange = attackTower.AttackRange;
         _targetMask = attackTower.TargetMask;
         _rotationSpeed = attackTower.RotationSpeed;
-        _cooldown = attackTower.Cooldown;
     }
 
     // Update is called once per frame

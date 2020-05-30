@@ -15,7 +15,7 @@ public class ATower : AnAttack
 
     protected override void SpawnAttack(Transform firePoint)
     {
-        Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseTower>().Setup(this);
+        Instantiate(Attack, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseTower>().Setup(this);
     }
 
     protected override bool CanAttack()

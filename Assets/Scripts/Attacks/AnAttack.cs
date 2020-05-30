@@ -14,7 +14,7 @@ public class AnAttack : ScriptableObject
     public Sprite Image = default;
 
     [Tooltip("The prefab to spawn when using this attack")]
-    public GameObject Prefab = default;
+    public GameObject Attack = default;
 
     [Tooltip("How much time should there be in between firing this attack")]
     public float Cooldown = 0;
@@ -40,7 +40,7 @@ public class AnAttack : ScriptableObject
 
     protected virtual void SpawnAttack(Transform firePoint)
     {
-        Instantiate(Prefab, firePoint.position, firePoint.rotation);
+        Instantiate(Attack, firePoint.position, firePoint.rotation);
         CameraShake.Instance.Shake(Random.Range(.01f, .05f));
     }
 
