@@ -6,20 +6,21 @@ using UnityEngine.UI;
 /// <summary>
 /// Scriptable object used to describe default and required fields for attacks
 /// </summary>
-[CreateAssetMenu(fileName = "new Attack", menuName = "Attack")]
+[CreateAssetMenu(fileName = "new Attack", menuName = "Spawnables/Attack")]
 public class AnAttack : ScriptableObject
 {
+    [Header("Attack Properties")]
     [Tooltip("Image/Icon used to display this attack in the hotbar")]
     public Sprite Image = default;
 
     [Tooltip("The prefab to spawn when using this attack")]
     public GameObject Prefab = default;
 
-    [Tooltip("How long the player has to wait before he can use this attack again")]
+    [Tooltip("How much time should there be in between firing this attack")]
     public float Cooldown = 0;
-    private float _cooldownTimer;
+    private float _cooldownTimer = 0;
 
-    private HotbarItem _hotbarItem;
+    private HotbarItem _hotbarItem = default;
 
     public void Fire(Transform firePoint)
     {

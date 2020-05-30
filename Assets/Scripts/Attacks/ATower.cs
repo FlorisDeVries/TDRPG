@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Tower", menuName = "Tower")]
-public class Tower : AnAttack
+[CreateAssetMenu(fileName = "new Tower", menuName = "Spawnables/Tower")]
+public class ATower : AnAttack
 {
+    [Header("Tower Properties")]
     [SerializeField]
     [Tooltip("How much currency is required to build this tower.")]
     private float _cost = 10f;
@@ -14,7 +15,7 @@ public class Tower : AnAttack
 
     protected override void SpawnAttack(Transform firePoint)
     {
-        Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).AddComponent<BaseTower>().Setup(this);
+        Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseTower>().Setup(this);
     }
 
     protected override bool CanAttack()

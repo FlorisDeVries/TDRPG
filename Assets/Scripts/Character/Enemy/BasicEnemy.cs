@@ -70,11 +70,4 @@ public class BasicEnemy : MonoBehaviour, IDamageable
     {
         Debug.LogError("Implement this behaviour please");
     }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 1);
-    }
 }
