@@ -21,6 +21,6 @@ public class AnAttackTower : ATower
 
     protected override void SpawnAttack(Transform firePoint)
     {
-        Instantiate(Attack, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseAttackTower>().Setup(this);
+        Instantiate(Attack, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseAttackTower>()?.Setup(this);
     }
 }

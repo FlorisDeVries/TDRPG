@@ -9,7 +9,7 @@ using static UnityEngine.InputSystem.InputAction;
 /// Class that handles all movement logic for the player
 /// </summary>
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour, IDamageable
+public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
 

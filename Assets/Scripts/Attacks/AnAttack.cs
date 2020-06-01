@@ -17,7 +17,7 @@ public class AnAttack : ScriptableObject
     public GameObject Attack = default;
 
     [Tooltip("How much time should there be in between firing this attack")]
-    public float Cooldown = 0;
+    public float Cooldown = 1;
     private float _cooldownTimer = 0;
 
     private HotbarItem _hotbarItem = default;

@@ -13,10 +13,15 @@ public class BaseTower : MonoBehaviour, IDamageable
         _currentHP = _maxHP;
     }
 
-    public virtual void Hit(float damage)
+    public virtual void Hit(float damage, Vector3 position, Vector3 direction)
     {
         _currentHP -= damage;
         if (_currentHP <= 0)
-            Destroy(this.gameObject);
+            Die();
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

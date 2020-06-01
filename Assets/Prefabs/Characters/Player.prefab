@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 8625476815438044562}
   - component: {fileID: 8625476815438044561}
   - component: {fileID: 8625476815438044563}
+  - component: {fileID: 2476500378049853540}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -274,11 +275,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf8d46781a4196e458424078a099b0a3, type: 2}
   - {fileID: 11400000, guid: 4c497854b312fb842a9564fbe56bf66f, type: 2}
   - {fileID: 11400000, guid: 33ad74ad1ede2e34cb7b1f8be8cb1ee2, type: 2}
+  - {fileID: 11400000, guid: 71c4bde2d1aa9404d966415470b7911e, type: 2}
   _hotBarPrefab: {fileID: 9204056287220287134, guid: 8990e5db6d3e9cb44b7b8dc0ed8ec716,
     type: 3}
   _hotbarParent: {fileID: 0}
   _firePoint: {fileID: 8625476814837810088}
   _attackIndex: 0
+--- !u!114 &2476500378049853540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625476815438044572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12abf69a86419ac47856f7c57ce69d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 50
 --- !u!1001 &8625476815066335075
 PrefabInstance:
   m_ObjectHideFlags: 0

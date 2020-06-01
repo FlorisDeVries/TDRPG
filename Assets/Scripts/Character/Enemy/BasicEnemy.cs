@@ -38,7 +38,7 @@ public class BasicEnemy : MonoBehaviour, IDamageable
             _agent.SetDestination(_goal.transform.position);
     }
 
-    public void Hit(Vector3 pos, Vector3 direction)
+    public void Hit(float damage, Vector3 pos, Vector3 direction)
     {
         GameObject hitEffect = Instantiate(_hitParticles, pos + direction.normalized * 0.5f, Quaternion.FromToRotation(Vector3.up, direction));
         hitEffect.transform.forward = direction;
@@ -64,10 +64,5 @@ public class BasicEnemy : MonoBehaviour, IDamageable
         _animator.SetBool("Alive", false);
         Instantiate(_deathParticles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
         Destroy(this.gameObject);
-    }
-
-    public void Hit(float damage)
-    {
-        Debug.LogError("Implement this behaviour please");
     }
 }

@@ -21,7 +21,7 @@ public class GoalManager : UnitySingleton<GoalManager>
 
         foreach (Goal goal in _goals)
         {
-            if (Vector3.Distance(goal.transform.position, pos) < distance)
+            if (goal && Vector3.Distance(goal.transform.position, pos) < distance)
             {
                 closest = goal;
                 distance = Vector3.Distance(goal.transform.position, pos);

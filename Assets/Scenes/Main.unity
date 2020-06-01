@@ -897,16 +897,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hostile
-      objectReference: {fileID: 0}
     - target: {fileID: 4081977888794879803, guid: a88363f3291d0724899dc0a095ea9bf9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -961,11 +951,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4081977888794879806, guid: a88363f3291d0724899dc0a095ea9bf9,
-        type: 3}
-      propertyPath: m_Speed
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88363f3291d0724899dc0a095ea9bf9, type: 3}
@@ -2361,20 +2346,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 760447471}
     m_Modifications:
+    - target: {fileID: 476216924, guid: a88363f3291d0724899dc0a095ea9bf9, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476216924, guid: a88363f3291d0724899dc0a095ea9bf9, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9,
         type: 3}
       propertyPath: m_Name
       value: BaseEnemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hostile
       objectReference: {fileID: 0}
     - target: {fileID: 4081977888794879803, guid: a88363f3291d0724899dc0a095ea9bf9,
         type: 3}
@@ -2430,11 +2413,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4081977888794879806, guid: a88363f3291d0724899dc0a095ea9bf9,
-        type: 3}
-      propertyPath: m_Speed
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88363f3291d0724899dc0a095ea9bf9, type: 3}

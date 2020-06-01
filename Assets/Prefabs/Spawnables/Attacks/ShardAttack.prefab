@@ -4902,11 +4902,11 @@ GameObject:
   - component: {fileID: 3518537014238956798}
   - component: {fileID: 3518537014238956784}
   - component: {fileID: 3518537014238956799}
-  - component: {fileID: 1026375126}
   - component: {fileID: 8196132131038536024}
   - component: {fileID: 1196015846319140209}
+  - component: {fileID: 2890976894763662639}
   m_Layer: 9
-  m_Name: ShardProjectile
+  m_Name: ShardAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9650,25 +9650,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1026375126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3518537014238956797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d04686d24471d459966f2fc1df55f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 20
-  _fireRate: 2
-  _lifeTime: 1.5
-  _muzzlePrefab: {fileID: 8460429991067853003, guid: 25364ba7d304891498edd29db0a6fb59,
-    type: 3}
-  _hitPrefab: {fileID: 2836407966637771608, guid: 2e739182f5ba4c54d85d3a93c31018c3,
-    type: 3}
 --- !u!65 &8196132131038536024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9677,7 +9658,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3518537014238956797}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.17811692, y: 0.19117641, z: 0.54131675}
@@ -9698,3 +9679,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2890976894763662639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518537014238956797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4081ae0369974594e85c0e41127996bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 20
+  _lifeTime: 10
+  _damage: 5
+  _spawnParticles: {fileID: 8460429991067853003, guid: 25364ba7d304891498edd29db0a6fb59,
+    type: 3}
+  _hitParticles: {fileID: 2836407966637771608, guid: 2e739182f5ba4c54d85d3a93c31018c3,
+    type: 3}
+  _hitMask:
+    serializedVersion: 2
+    m_Bits: 4096
