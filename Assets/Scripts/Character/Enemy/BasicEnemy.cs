@@ -51,8 +51,8 @@ public class BasicEnemy : MonoBehaviour, IDamageable
     // TODO: Do this or check for distance each update?
     private void OnCollisionEnter(Collision other)
     {
-        Goal goal = other.gameObject.GetComponent<Goal>();
-        if (goal)
+        // Explode if we find either a BaseTower or a Goal
+        if (other.gameObject.GetComponentInChildren<BaseTower>() || other.gameObject.GetComponent<Goal>())
         {
             Explode();
         }

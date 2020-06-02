@@ -15,6 +15,7 @@ public class BaseTower : MonoBehaviour, IDamageable
 
     public virtual void Hit(float damage, Vector3 position, Vector3 direction)
     {
+        Debug.Log($"I'm hit {gameObject.name}");
         _currentHP -= damage;
         if (_currentHP <= 0)
             Die();

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionMask:
     serializedVersion: 2
-    m_Bits: 13829
+    m_Bits: 62464
   _explosionRange: 2
 --- !u!1 &5217293299803461651
 GameObject:

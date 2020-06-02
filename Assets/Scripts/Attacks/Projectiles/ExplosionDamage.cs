@@ -16,9 +16,11 @@ public class ExplosionDamage : MonoBehaviour
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, _explosionRange, _explosionMask);
 
+        Debug.Log(hitColliders.Length);
+
         foreach (Collider col in hitColliders)
         {
-            IDamageable damageable = col.GetComponent<IDamageable>();
+            IDamageable damageable = col.GetComponentInChildren<IDamageable>();
             if (damageable != null)
                 damageable.Hit(5f, col.transform.position, (col.transform.position - transform.position).normalized);
         }
