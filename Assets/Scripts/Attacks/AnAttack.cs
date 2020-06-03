@@ -31,6 +31,12 @@ public class AnAttack : ScriptableObject
         }
     }
 
+    public void SetupAttack(Transform parent, GameObject prefab)
+    {
+        SetupHotbar(parent, prefab);
+        SetSelected(false);
+    }
+
     public void SetupHotbar(Transform parent, GameObject prefab)
     {
         _hotbarItem = Instantiate(prefab).GetComponent<HotbarItem>();

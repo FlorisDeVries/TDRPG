@@ -35,10 +35,8 @@ public class PlayerCombat : MonoBehaviour
     private void Start()
     {
         foreach (AnAttack attack in _currentAttacks)
-        {
-            attack.SetupHotbar(_hotbarParent, _hotBarPrefab);
-            attack.SetSelected(false);
-        }
+            attack.SetupAttack(_hotbarParent, _hotBarPrefab);
+
         _currentAttacks[_attackIndex].SetSelected(true);
         _currentAttack = _currentAttacks[_attackIndex];
     }
@@ -67,6 +65,12 @@ public class PlayerCombat : MonoBehaviour
         _currentAttack.SetSelected(true);
     }
 
+    public void AddAttack(AnAttack attack)
+    {
+        _currentAttacks.Add(attack);
+        attack.SetupAttack(_hotbarParent, _hotBarPrefab);
+    }
+
     #region Input
     public void OnFire()
     {
@@ -90,7 +94,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         change /= Mathf.Abs(change);
 
-        int newIdx = _attackIndex + change;        
+        int newIdx = _attackIndex + change;
 
         if (newIdx >= _currentAttacks.Count)
             newIdx = 0;
