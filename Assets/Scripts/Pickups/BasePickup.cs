@@ -16,10 +16,14 @@ public class BasePickup : MonoBehaviour
             GivePickUp(player);
         }
     }
-
     protected virtual void GivePickUp(PlayerCombat player)
     {
         player.AddAttack(_pickUp);
         Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        transform.Rotate(new Vector3(.1f, .5f, -.01f));
     }
 }
