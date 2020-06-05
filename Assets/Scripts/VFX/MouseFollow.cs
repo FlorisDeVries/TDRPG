@@ -7,7 +7,11 @@ public class MouseFollow : UnitySingleton<MouseFollow>
 {
     [SerializeField]
     [Tooltip("What layers define the world")]
-    private LayerMask _mask = default;
+    private LayerMask _rayMask = default;
+
+    [SerializeField]
+    [Tooltip("What layers define the world")]
+    private LayerMask _placementMask = default;
 
     [SerializeField]
     [Tooltip("The offset that the visuals should have in regards to the inWorld mouse position")]
@@ -30,10 +34,10 @@ public class MouseFollow : UnitySingleton<MouseFollow>
         RaycastHit hit;
 
         _placeableGround = false;
-        if (Physics.Raycast(ray, out hit, 1000000))
+        if (Physics.Raycast(ray, out hit, 1000000, _rayMask))
         {
             transform.position = hit.point + _offset;
-            if (Utils.IsInLayerMask(hit.collider.gameObject.layer, _mask))
+            if (Utils.IsInLayerMask(hit.collider.gameObject.layer, _placementMask))
                 _placeableGround = true;
         }
         else

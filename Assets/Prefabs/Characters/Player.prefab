@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &577486598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 577486599}
+  - component: {fileID: 577486600}
+  m_Layer: 17
+  m_Name: AggroTransmitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577486599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577486598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8625476815438044560}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &577486600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577486598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8420b173afdd0b9439697e40cf4416f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aggroValue: 1
+  _aggroRange: 5
 --- !u!1 &8625476814737989732
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +205,7 @@ Transform:
   m_Children:
   - {fileID: 8625476814737989733}
   - {fileID: 8625476814837810088}
+  - {fileID: 577486599}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -271,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentAttacks:
-  - {fileID: 11400000, guid: cf8d46781a4196e458424078a099b0a3, type: 2}
+  - {fileID: 11400000, guid: 4c497854b312fb842a9564fbe56bf66f, type: 2}
   _hotBarPrefab: {fileID: 9204056287220287134, guid: 8990e5db6d3e9cb44b7b8dc0ed8ec716,
     type: 3}
   _hotbarParent: {fileID: 0}

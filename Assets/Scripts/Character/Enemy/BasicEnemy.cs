@@ -11,8 +11,12 @@ public class BasicEnemy : MonoBehaviour, IDamageable
     [Tooltip("Nav mesh agent")]
     private NavMeshAgent _agent = default;
 
+    [SerializeField]
+    [Tooltip("How close the target must be for us to attack")]
+    private float _attackRange = 1.5f;
+
     // The current target goal
-    private Goal _goal = default;
+    private Transform _target = default;
 
     [SerializeField]
     [Tooltip("The hit particle to play when hit")]
@@ -26,16 +30,33 @@ public class BasicEnemy : MonoBehaviour, IDamageable
 
     private Animator _animator;
 
+    private AggroController _aggroController = default;
+
     // Start is called before the first frame update
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
+        _aggroController = GetComponent<AggroController>();
+
         // GoalManager.Instance
-        _goal = GoalManager.Instance.GetClosestGoal(transform.position);
-        if (_goal)
-            _agent.SetDestination(_goal.transform.position);
+        _target = _aggroController.GetHighestAggro();
+        if (_target)
+            _agent.SetDestination(_target.position);
+    }
+
+    private void Update()
+    {
+        Transform newTarget = _aggroController.GetHighestAggro();
+        if (newTarget)
+        {
+            _target = newTarget;
+            _agent.SetDestination(_target.position);
+        }
+
+        if (Vector3.Distance(transform.position, _target.position) < _attackRange)
+            Explode();
     }
 
     public void Hit(float damage, Vector3 pos, Vector3 direction)
@@ -46,16 +67,6 @@ public class BasicEnemy : MonoBehaviour, IDamageable
         _healthPoints--;
         if (_healthPoints <= 0)
             Explode();
-    }
-
-    // TODO: Do this or check for distance each update?
-    private void OnCollisionEnter(Collision other)
-    {
-        // Explode if we find either a BaseTower or a Goal
-        if (other.gameObject.GetComponentInChildren<BaseTower>() || other.gameObject.GetComponent<Goal>())
-        {
-            Explode();
-        }
     }
 
     public void Explode()
