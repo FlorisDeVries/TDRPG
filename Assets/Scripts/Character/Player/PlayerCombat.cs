@@ -37,8 +37,11 @@ public class PlayerCombat : MonoBehaviour
         foreach (AnAttack attack in _currentAttacks)
             attack.SetupAttack(_hotbarParent, _hotBarPrefab);
 
-        _currentAttacks[_attackIndex].SetSelected(true);
-        _currentAttack = _currentAttacks[_attackIndex];
+        if (_currentAttacks.Count > 0)
+        {
+            _currentAttacks[_attackIndex].SetSelected(true);
+            _currentAttack = _currentAttacks[_attackIndex];
+        }
     }
 
     // Update is called once per frame
@@ -47,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
         // Firing
         if (_firing && _firePoint)
         {
-            _currentAttack.Fire(_firePoint);
+            _currentAttack?.Fire(_firePoint);
         }
 
         foreach (AnAttack attack in _currentAttacks)
@@ -59,16 +62,22 @@ public class PlayerCombat : MonoBehaviour
     private void SetNewAttack(int index)
     {
         _attackIndex = index;
-        _currentAttack.SetSelected(false);
+        _currentAttack?.SetSelected(false);
 
-        _currentAttack = _currentAttacks[index];
-        _currentAttack.SetSelected(true);
+        if (_currentAttacks.Count > index)
+        {
+            _currentAttack = _currentAttacks[index];
+            _currentAttack.SetSelected(true);
+        }
     }
 
     public void AddAttack(AnAttack attack)
     {
         _currentAttacks.Add(attack);
         attack.SetupAttack(_hotbarParent, _hotBarPrefab);
+
+        if (_currentAttacks.Count == 1)
+            SetNewAttack(0);
     }
 
     #region Input
