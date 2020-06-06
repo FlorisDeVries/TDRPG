@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8420b173afdd0b9439697e40cf4416f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aggroValue: 1
+  _aggroValue: 1000
   _aggroRange: 5
 --- !u!1 &8625476814737989732
 GameObject:

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
 {
+    [Header("Base Projectile")]
     [SerializeField]
     [Tooltip("How fast the projectile is going")]
     private float _speed = 20f;
@@ -43,11 +44,16 @@ public class BaseProjectile : MonoBehaviour
     {
         _speed = 0;
 
+        HitOther(other);
+
+        Die();
+    }
+
+    protected virtual void HitOther(Collider other)
+    {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable != null && Utils.IsInLayerMask(other.gameObject.layer, _hitMask))
             damageable.Hit(_damage, transform.position, transform.forward);
-
-        Die();
     }
 
     protected virtual void Die()
