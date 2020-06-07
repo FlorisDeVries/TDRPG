@@ -8,7 +8,7 @@ public class Goal : MonoBehaviour, IDamageable
     [Tooltip("How much HP this goal has")]
     private float _hitPoints = 2;
 
-    public void Hit(float damage, Vector3 position, Vector3 direction)
+    public void GetHit(float damage, Vector3 position, Vector3 direction)
     {
         _hitPoints -= damage;
         if (_hitPoints <= 0)

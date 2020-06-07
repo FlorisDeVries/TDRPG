@@ -21,8 +21,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Debug.Log($"Player died");
     }
 
-    public void Hit(float damage, Vector3 position, Vector3 direction)
+    public void GetHit(float damage, Vector3 position, Vector3 direction)
     {
+        Debug.Log("Player got hit");
         _currentHP -= damage;
         if(_currentHP <= 0)
             Die();

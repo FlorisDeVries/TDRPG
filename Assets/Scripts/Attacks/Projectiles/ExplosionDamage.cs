@@ -20,7 +20,7 @@ public class ExplosionDamage : MonoBehaviour
         {
             IDamageable damageable = col.GetComponentInChildren<IDamageable>();
             if (damageable != null)
-                damageable.Hit(5f, col.transform.position, (col.transform.position - transform.position).normalized);
+                damageable.GetHit(5f, col.transform.position, (col.transform.position - transform.position).normalized);
         }
     }
 }

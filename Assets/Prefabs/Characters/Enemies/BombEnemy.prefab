@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 4081977888794879805}
   - component: {fileID: 4081977888794879802}
   - component: {fileID: 4081977888794879806}
-  - component: {fileID: 4081977888794879807}
+  - component: {fileID: 6897382778541423740}
   - component: {fileID: 476216924}
   - component: {fileID: 800649757}
   - component: {fileID: 1409920225}
   m_Layer: 12
-  m_Name: BaseEnemy
+  m_Name: BombEnemy
   m_TagString: Hostile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,10 +117,10 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.75
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4081977888794879807
+--- !u!114 &6897382778541423740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,15 +129,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4081977888794879800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26ad6773259997f4aa400ef4121c8775, type: 3}
+  m_Script: {fileID: 11500000, guid: 803d89274a5edeb49a8915c722604150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 4081977888794879806}
-  _attackRange: 1.5
+  _maxHP: 10
   _hitParticles: {fileID: 479588556655620366, guid: 0100d12937b4d9941b30d7a236a2bb42,
     type: 3}
   _deathParticles: {fileID: 1774777214388174079, guid: 46f8de66473c59d42964a8f003d65dfa,
     type: 3}
+  _attackRange: 1.5
 --- !u!54 &476216924
 Rigidbody:
   m_ObjectHideFlags: 0

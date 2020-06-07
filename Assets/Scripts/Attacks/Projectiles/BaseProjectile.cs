@@ -53,7 +53,7 @@ public class BaseProjectile : MonoBehaviour
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable != null && Utils.IsInLayerMask(other.gameObject.layer, _hitMask))
-            damageable.Hit(_damage, transform.position, transform.forward);
+            damageable.GetHit(_damage, transform.position, transform.forward);
     }
 
     protected virtual void Die()
