@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AggroController))]
 public class BaseEnemy : MonoBehaviour, IDamageable
@@ -25,6 +24,10 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     private float _currentHP = 10;
 
     [SerializeField]
+    [Tooltip("The transform at which the floating text should be displayed")]
+    private Transform _floatingTextAnchor = default;
+
+    [SerializeField]
     [Tooltip("The hit particle to play when hit")]
     private GameObject _hitParticles = default;
 
@@ -42,7 +45,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Start()
     {
         // Getting required components
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponentInParent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         _aggroController = GetComponent<AggroController>();
 
@@ -88,6 +91,9 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     /// <param name="direction">In what direction where we hit</param>
     public void GetHit(float damage, Vector3 pos, Vector3 direction)
     {
+        // Take damage
+        _currentHP -= damage;
+
         // Play particle hitEffect
         if (_hitParticles)
         {
@@ -95,13 +101,22 @@ public class BaseEnemy : MonoBehaviour, IDamageable
             hitEffect.transform.forward = direction;
         }
 
+
         // Animation
         animator.SetTrigger("GetHit");
 
-        // Take damage
-        _currentHP -= damage;
+        // Check whether we died
         if (_currentHP <= 0)
+        {
             Die();
+        }
+        else
+        {
+            // Spawn damage numbers
+            FloatingText floatingText = Instantiate(PrefabManager.Instance.FloatingText, _floatingTextAnchor.position, Quaternion.Euler(-Camera.main.transform.forward)).GetComponent<FloatingText>();
+            floatingText.SetText(_currentHP.ToString());
+            floatingText.SetColor(Color.red);
+        }
     }
 
     /// <summary>

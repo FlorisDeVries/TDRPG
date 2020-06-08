@@ -17,13 +17,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void Die()
     {
         Destroy(this.gameObject);
-
-        Debug.Log($"Player died");
     }
 
     public void GetHit(float damage, Vector3 position, Vector3 direction)
     {
-        Debug.Log("Player got hit");
         _currentHP -= damage;
         if(_currentHP <= 0)
             Die();
