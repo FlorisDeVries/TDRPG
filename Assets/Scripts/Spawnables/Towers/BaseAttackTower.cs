@@ -35,7 +35,7 @@ public class BaseAttackTower : BaseTower
         // Setup attack tower properties (copy them)
         AnAttackTower attackTower = tower as AnAttackTower;
 
-        _attack = attackTower.TowerAttack.Attack;
+        _attack = attackTower.TowerAttack.Prefab;
         _cooldown = attackTower.TowerAttack.Cooldown;
 
         _targetRange = attackTower.AttackRange;

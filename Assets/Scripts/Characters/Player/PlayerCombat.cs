@@ -50,10 +50,10 @@ public class PlayerCombat : MonoBehaviour
         // Firing
         if (_firing && _firePoint)
         {
-            _currentAttack?.Fire(_firePoint);
+            _currentAttack?.TrySpawn(_firePoint);
         }
 
-        foreach (AnAttack attack in _currentAttacks)
+        foreach (ASpawnable attack in _currentAttacks)
         {
             attack.Tick();
         }
