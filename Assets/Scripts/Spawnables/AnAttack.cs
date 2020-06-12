@@ -34,9 +34,9 @@ public class AnAttack : ASpawnable
         _hotbarItem.SetSelected(selected);
     }
 
-    protected override void Spawn(Transform spawnPos)
+    protected override void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
-        base.Spawn(spawnPos);
+        base.Spawn(spawnPos, spawnRot);
         CameraShake.Instance.Shake(Random.Range(.01f, .05f));
     }
 

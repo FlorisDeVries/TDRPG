@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public static class Utils
 {
+    /// <summary>
+    /// Returns a random point in the given bounds
+    /// </summary>
     public static Vector3 RandomPointInBounds(Bounds bounds)
     {
         return new Vector3(

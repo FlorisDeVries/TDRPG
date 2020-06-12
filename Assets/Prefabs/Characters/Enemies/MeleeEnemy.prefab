@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  _maxHP: 50
+  _maxHP: 20
   _floatingTextAnchor: {fileID: 3106193006054607378}
   _hitParticles: {fileID: 479588556655620366, guid: 0100d12937b4d9941b30d7a236a2bb42,
     type: 3}

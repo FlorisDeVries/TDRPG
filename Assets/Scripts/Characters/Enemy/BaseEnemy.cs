@@ -132,7 +132,6 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     /// </summary>
     protected virtual void Die()
     {
-        agent.SetDestination(transform.position);
         animator.SetBool("Alive", false);
         if (_deathParticles)
             Instantiate(_deathParticles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();

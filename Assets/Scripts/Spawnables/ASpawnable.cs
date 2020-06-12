@@ -20,11 +20,14 @@ public class ASpawnable : ScriptableObject
     /// Tries to spawn the spawnable
     /// </summary>
     /// <param name="SpawnPos">At what position to spawn the spawnable</param>
-    public void TrySpawn(Transform spawnPos)
+    public void TrySpawn(Vector3 spawnPos, Quaternion spawnRot = default)
     {
+        if (spawnRot.Equals(default(Quaternion)))
+            spawnRot = Quaternion.identity;
+
         if (CanBeSpawned())
         {
-            Spawn(spawnPos);
+            Spawn(spawnPos, spawnRot);
             cooldownTimer = 0;
         }
     }
@@ -33,9 +36,9 @@ public class ASpawnable : ScriptableObject
     /// Spawns an instance of the spawnable
     /// </summary>
     /// /// <param name="SpawnPos">At what position to spawn the spawnable</param>
-    protected virtual void Spawn(Transform spawnPos)
+    protected virtual void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
-        Instantiate(Prefab, spawnPos.position, spawnPos.rotation);
+        Instantiate(Prefab, spawnPos, spawnRot);
     }
 
     /// <summary>

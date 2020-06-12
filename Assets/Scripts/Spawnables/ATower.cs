@@ -13,7 +13,7 @@ public class ATower : ASpawnable
     [Tooltip("How much health points this tower will have.")]
     public float HealtPoints = 10f;
 
-    protected override void Spawn(Transform firePoint)
+    protected override void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
         Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseTower>()?.Setup(this);
     }

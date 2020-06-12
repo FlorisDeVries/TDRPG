@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab9271c4e17ed14e9fc5de5be618b41, type: 3}
   m_Name: Experiment
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 19fcea417f7d62d49b41f6a2e8562fa9, type: 3}
-  Attack: {fileID: 6708891759762325918, guid: a61d67ba1d68092408fce48ac1994a5f, type: 3}
+  Prefab: {fileID: 6708891759762325918, guid: a61d67ba1d68092408fce48ac1994a5f, type: 3}
   Cooldown: 0.5
   _cost: 5
   HealtPoints: 1
