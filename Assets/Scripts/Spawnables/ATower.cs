@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new Tower", menuName = "Spawnables/Tower")]
-public class ATower : ASpawnable
+public class ATower : AnAttack
 {
     [Header("Tower Properties")]
     [SerializeField]

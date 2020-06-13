@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BombEnemy_5
   m_EditorClassIdentifier: 
   Spawnable: {fileID: 11400000, guid: 71c4bde2d1aa9404d966415470b7911e, type: 2}
-  SpawnAmount: 5
+  SpawnAmount: 50
   SpawnerInterval: 1
-  SpawnerCooldown: 10
+  SpawnerCooldown: 1

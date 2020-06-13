@@ -132,6 +132,9 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     /// </summary>
     protected virtual void Die()
     {
+        // Mark as dead in waveManager
+        WaveManager.Instance.EnemyDied();
+
         animator.SetBool("Alive", false);
         if (_deathParticles)
             Instantiate(_deathParticles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();

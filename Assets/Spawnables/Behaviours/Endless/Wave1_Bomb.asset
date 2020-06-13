@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8588a3d34b0efc64087ad746e41944b6, type: 3}
-  m_Name: BombEnemy
+  m_Script: {fileID: 11500000, guid: 5955117a9eae6564f84ac8a1204a6645, type: 3}
+  m_Name: Wave1_Bomb
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9, type: 3}
-  Cooldown: 0
+  Spawnable: {fileID: 11400000, guid: 71c4bde2d1aa9404d966415470b7911e, type: 2}
+  SpawnAmount: 5
+  SpawnerInterval: 0.1
+  SpawnerCooldown: 1

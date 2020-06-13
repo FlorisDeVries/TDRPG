@@ -50,7 +50,7 @@ public class BaseSpawningBehaviour : ScriptableObject
 
     public bool CanSpawn()
     {
-        return _intervalTimer <= 0 && !(_spawnCounter >= SpawnAmount);
+        return _intervalTimer <= 0 && _spawnCounter < SpawnAmount;
     }
 
     public void Spawn(Bounds bounds)
@@ -59,5 +59,11 @@ public class BaseSpawningBehaviour : ScriptableObject
         _spawnCounter++;
         _intervalTimer = SpawnerInterval;
         _cooldownTimer = SpawnerCooldown;
+    }
+
+
+    public virtual int GetEnemyCount()
+    {
+        return SpawnAmount;
     }
 }
