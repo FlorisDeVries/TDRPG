@@ -34,7 +34,7 @@ public class BaseSpawningBehaviour : ScriptableObject
 
     public bool IsDone()
     {
-        return _spawnCounter >= SpawnAmount && _cooldownTimer <= 0;
+        return _spawnCounter >= GetEnemyCount() && _cooldownTimer <= 0;
     }
 
     public void Tick(Bounds bounds)
@@ -50,7 +50,7 @@ public class BaseSpawningBehaviour : ScriptableObject
 
     public bool CanSpawn()
     {
-        return _intervalTimer <= 0 && _spawnCounter < SpawnAmount;
+        return _intervalTimer <= 0 && _spawnCounter < GetEnemyCount();
     }
 
     public void Spawn(Bounds bounds)
@@ -60,7 +60,11 @@ public class BaseSpawningBehaviour : ScriptableObject
         _intervalTimer = SpawnerInterval;
         _cooldownTimer = SpawnerCooldown;
     }
-
+    
+    public virtual void NextWave()
+    {
+        Reset();
+    }
 
     public virtual int GetEnemyCount()
     {

@@ -740,6 +740,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Cheats",
+            "id": "0d497293-e21f-47f7-b87b-d763d5e1fc61",
+            "actions": [
+                {
+                    "name": "KillAll",
+                    "type": "Button",
+                    "id": "8146e83b-8561-47f9-8710-ca2fa53f8f31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "002174e5-997b-47db-a0ef-664d44a5c47b",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "KillAll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

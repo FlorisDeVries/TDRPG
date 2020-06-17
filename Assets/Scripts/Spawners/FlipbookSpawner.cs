@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a special kind of spawner that cycles through spawning behaviours, instead of ticking all of them at once 
+/// </summary>
 public class FlipbookSpawner : BaseSpawner
 {
     private int _spawningIdx = 0;

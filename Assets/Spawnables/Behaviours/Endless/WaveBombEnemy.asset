@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5955117a9eae6564f84ac8a1204a6645, type: 3}
-  m_Name: Wave1_Melee
+  m_Script: {fileID: 11500000, guid: 027cd0b1d03ed494aa02e752e1d45948, type: 3}
+  m_Name: WaveBombEnemy
   m_EditorClassIdentifier: 
-  Spawnable: {fileID: 11400000, guid: 6964eeacf06ce6a4fb9e7bbd22f3637f, type: 2}
-  SpawnAmount: 2
-  SpawnerInterval: 1
+  Spawnable: {fileID: 11400000, guid: 71c4bde2d1aa9404d966415470b7911e, type: 2}
+  SpawnAmount: 5
+  SpawnerInterval: 0.1
   SpawnerCooldown: 1
+  WaveCount: 0
+  Multiplier: 10

@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Scripteable used to determine what enemies are going to spawn this wave
 /// </summary>
-[CreateAssetMenu(fileName = "new Wave", menuName = "SpawningBehaviour/Wave")]
+[CreateAssetMenu(fileName = "new Wave", menuName = "SpawningBehaviour/WaveController")]
 public class AWave : ScriptableObject
 {
     public List<BaseSpawningBehaviour> SpawningBehaviours;
@@ -25,7 +25,7 @@ public class AWave : ScriptableObject
     {
         foreach (BaseSpawningBehaviour behaviour in SpawningBehaviours)
         {
-            behaviour.Reset();
+            behaviour.NextWave();
         }
     }
 

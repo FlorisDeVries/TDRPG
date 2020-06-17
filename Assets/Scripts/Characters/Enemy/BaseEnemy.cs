@@ -140,4 +140,11 @@ public class BaseEnemy : MonoBehaviour, IDamageable
             Instantiate(_deathParticles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
         Destroy(this.gameObject);
     }
+
+    #region Cheats
+    public void OnKillAll()
+    {
+        Die();
+    }
+    #endregion
 }

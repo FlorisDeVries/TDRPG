@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EndlessWaves
   m_EditorClassIdentifier: 
   SpawningBehaviours:
-  - {fileID: 11400000, guid: 5655416ce6e32954796fb678d23a4bd8, type: 2}
-  - {fileID: 11400000, guid: fa4cdebff8dd3ea46816e29ae8e315ae, type: 2}
+  - {fileID: 11400000, guid: e6a0c8a0bff469442ab7c41ef85451c2, type: 2}
+  - {fileID: 11400000, guid: 34dec9f5b88f89f48ac6885b86ad521b, type: 2}

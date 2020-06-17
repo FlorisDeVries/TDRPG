@@ -38,7 +38,8 @@ public class ASpawnable : ScriptableObject
     /// /// <param name="SpawnPos">At what position to spawn the spawnable</param>
     protected virtual void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
-        Instantiate(Prefab, spawnPos, spawnRot);
+        GameObject gO = Instantiate(Prefab, spawnPos, spawnRot);
+        gO.transform.SetParent(CharactersParent.Instance.transform);
     }
 
     /// <summary>

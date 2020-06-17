@@ -30,10 +30,6 @@ public class PlayerMovement : MonoBehaviour
     private float _gravity = -9.81f;
 
     [SerializeField]
-    [Tooltip("How high we jump")]
-    private float _dashDistance = 5.0f;
-
-    [SerializeField]
     [Tooltip("How much drag should be applied to velocity")]
     private Vector3 _drag = Vector3.one;
 
@@ -61,12 +57,6 @@ public class PlayerMovement : MonoBehaviour
         _jumping = !_jumping;
         if (!_jumping)
             _jumpTimer = .2f;
-    }
-
-    public void OnDash()
-    {
-        // Dash where the player is looking
-        _velocity += Vector3.Scale(transform.forward, _dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * _drag.x + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * _drag.z + 1)) / -Time.deltaTime)));
     }
 
     public void Update()
