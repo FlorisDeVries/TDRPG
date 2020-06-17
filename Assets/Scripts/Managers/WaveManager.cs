@@ -11,22 +11,32 @@ public class WaveManager : UnitySingleton<WaveManager>
     private AWave _currentWave = default;
     public AWave CurrentWave { get { return _currentWave; } }
 
-    [SerializeField]
-    private int _enemiesAlive = 0;
+    public int WaveCounter { get; private set; } = 1;
+
+    public (int max, int current) EnemiesAlive = (0, 0);
 
     private List<BaseSpawner> _spawners = new List<BaseSpawner>();
 
+    [HideInInspector]
+    public UnityEvent OnNextWave = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent OnEnemyDied = new UnityEvent();
+
     private void Start()
     {
-        _enemiesAlive = _currentWave.GetEnemyCount();
+        EnemiesAlive = (_currentWave.GetEnemyCount(), _currentWave.GetEnemyCount());
         _currentWave.Reset();
+        Reset();
+
+        OnNextWave.Invoke();
     }
 
     public void EnemyDied()
     {
-        _enemiesAlive--;
+        EnemiesAlive.current--;
+        OnEnemyDied.Invoke();
 
-        if (_enemiesAlive <= 0)
+        if (EnemiesAlive.current <= 0)
         {
             NextWave();
         }
@@ -34,13 +44,21 @@ public class WaveManager : UnitySingleton<WaveManager>
 
     private void NextWave()
     {
+        WaveCounter++;
         _currentWave.NextWave();
-        _enemiesAlive = _currentWave.GetEnemyCount();
+        EnemiesAlive = (_currentWave.GetEnemyCount(), _currentWave.GetEnemyCount());
+
+        OnNextWave.Invoke();
     }
 
     public void AddSpawner(BaseSpawner spawner)
     {
         _spawners.Add(spawner);
         spawner.SetBehaviours(_currentWave.SpawningBehaviours);
+    }
+
+    private void Reset()
+    {
+        WaveCounter = 1;
     }
 }
