@@ -57,7 +57,6 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         currentTarget = _aggroController.GetHighestAggro();
         if (currentTarget)
         {
-            Debug.Log($"Target set {currentTarget.name}");
             agent.SetDestination(currentTarget.position);
         }
     }
@@ -133,7 +132,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         // Mark as dead in waveManager
-        WaveManager.Instance.EnemyDied();
+        EndlessWaveManager.Instance.EnemyDied();
 
         animator.SetBool("Alive", false);
         if (_deathParticles)

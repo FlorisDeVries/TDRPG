@@ -5,36 +5,18 @@ using UnityEngine;
 
 public class BaseSpawner : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("The spawning behaviours associated with this spawner")]
-    protected List<BaseSpawningBehaviour> spawnBehaviours = new List<BaseSpawningBehaviour>();
+    private BoxCollider _collider = default;
 
-    protected BoxCollider spawnArea = default;
-
-    void Start()
+    private void Start()
     {
-        spawnArea = GetComponent<BoxCollider>();
-        WaveManager.Instance.AddSpawner(this);
+        _collider = GetComponent<BoxCollider>();
+        EndlessWaveManager.Instance.AddSpawner(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Spawn(GameObject prefab)
     {
-        SpawnTick();
-    }
-
-    protected virtual void SpawnTick()
-    {
-        foreach (BaseSpawningBehaviour behaviour in spawnBehaviours)
-        {
-            if (!behaviour.IsDone())
-                behaviour.Tick(spawnArea.bounds);
-        }
-    }
-
-    public void SetBehaviours(List<BaseSpawningBehaviour> behaviours)
-    {
-        spawnBehaviours = behaviours;
+        Vector3 pos = Utils.RandomPointInBounds(_collider.bounds);
+        Instantiate(prefab, pos, Quaternion.identity).transform.SetParent(CharactersParent.Instance.transform);
     }
 }
 

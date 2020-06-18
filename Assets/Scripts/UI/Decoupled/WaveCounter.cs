@@ -15,12 +15,12 @@ public class WaveCounter : MonoBehaviour
     {
         _text = GetComponent<TMP_Text>();
 
-        WaveManager.Instance.OnNextWave.AddListener(UpdateText);
+        EndlessWaveManager.Instance.OnUpdateWave.AddListener(UpdateText);
         UpdateText();
     }
 
     private void UpdateText()
     {
-        _text.text = WaveManager.Instance.WaveCounter.ToString();
+        _text.text = EndlessWaveManager.Instance.CurrentWave.ToString();
     }
 }
