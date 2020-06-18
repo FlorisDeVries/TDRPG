@@ -90,6 +90,9 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     /// <param name="direction">In what direction where we hit</param>
     public void GetHit(float damage, Vector3 pos, Vector3 direction)
     {
+        if (_currentHP <= 0)
+            return;
+
         // Take damage
         _currentHP -= damage;
 
@@ -102,7 +105,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
 
         // Animation
-        animator.SetTrigger("GetHit");
+        animator?.SetTrigger("GetHit");
 
         // Check whether we died
         if (_currentHP <= 0)
@@ -134,7 +137,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         // Mark as dead in waveManager
         EndlessWaveManager.Instance.EnemyDied();
 
-        animator.SetBool("Alive", false);
+        animator?.SetBool("Alive", false);
         if (_deathParticles)
             Instantiate(_deathParticles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
         Destroy(this.gameObject);

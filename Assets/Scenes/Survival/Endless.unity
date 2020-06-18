@@ -3645,6 +3645,7 @@ GameObject:
   - component: {fileID: 1886219710}
   - component: {fileID: 1886219711}
   - component: {fileID: 1886219712}
+  - component: {fileID: 1886219713}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -3745,7 +3746,7 @@ MonoBehaviour:
   _waves:
   - {fileID: 11400000, guid: 71b70a01dd660a7439b6a069a99f1e4d, type: 2}
   - {fileID: 11400000, guid: bb4c1c7394c71bc4992ed611fa05c2d4, type: 2}
-  WaveInterval: 5
+  WaveInterval: 2
   _waveCountdown: 5
   _waveState: 1
   OnUpdateWave:
@@ -3754,6 +3755,18 @@ MonoBehaviour:
   OnUpdateEnemyCount:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1886219713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886219707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69468457f15d67448fb70e759f6301f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1921934624
 GameObject:
   m_ObjectHideFlags: 0
