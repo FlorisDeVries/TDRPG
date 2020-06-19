@@ -12,6 +12,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
+    private PlayerHealth _playerHealth;
 
     [SerializeField]
     [Tooltip("How fast the character moves")]
@@ -36,12 +37,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private Vector3 _moveDirection = Vector3.zero;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void OnMove(InputValue value)
@@ -61,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
+        if (_playerHealth.IsDead)
+            return;
+
         // Check jumping
         if ((_jumping || _jumpTimer > 0f) && _groundedTimer > 0f)
         {

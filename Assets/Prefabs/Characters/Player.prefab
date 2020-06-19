@@ -137,6 +137,36 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &7080167282851381885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795380990427367762}
+  m_Layer: 10
+  m_Name: FloatingTextAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &795380990427367762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080167282851381885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8625476815438044560}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8625476814737989732
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +329,7 @@ Transform:
   - {fileID: 8625476814837810088}
   - {fileID: 577486599}
   - {fileID: 943749513}
+  - {fileID: 795380990427367762}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -395,7 +426,6 @@ MonoBehaviour:
   _speed: 5
   _jumpHeight: 7.5
   _gravity: -9.81
-  _dashDistance: 5
   _drag: {x: 5, y: 5, z: 5}
 --- !u!114 &8625476815438044563
 MonoBehaviour:
@@ -430,6 +460,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 50
+  _regenRate: 1
+  _regenAmount: 1
+  _floatingTextAnchor: {fileID: 795380990427367762}
 --- !u!1001 &8625476815066335075
 PrefabInstance:
   m_ObjectHideFlags: 0
