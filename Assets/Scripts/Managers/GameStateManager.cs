@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,37 +8,30 @@ public enum GameState
 {
     Playing,
     Paused,
-    GameOver
+    GameOver,
+    Victory
 }
 
 public class GameStateManager : UnitySingleton<GameStateManager>
 {
-    public GameState GameState { get; private set; } = GameState.Paused;
+    public GameState GameState { get; private set; } = GameState.Playing;
 
-    [HideInInspector]
-    public UnityEvent OnGameOver = new UnityEvent();
+    public Dictionary<GameState, UnityEvent> GameStateEvents { get; private set; } = new Dictionary<GameState, UnityEvent>();
 
-    [HideInInspector]
-    public UnityEvent OnPause = new UnityEvent();
-
-    [HideInInspector]
-    public UnityEvent OnPlay = new UnityEvent();
-
-    public void GameOver()
+    protected override void Awake()
     {
-        OnGameOver.Invoke();
-        GameState = GameState.GameOver;
+        base.Awake();
+
+        // Init all toggle events
+        foreach (GameState type in Enum.GetValues(typeof(GameState)))
+        {
+            GameStateEvents.Add(type, new UnityEvent());
+        }
     }
 
-    public void Pause()
+    public void SetGameState(GameState state)
     {
-        OnPause.Invoke();
-        GameState = GameState.Paused;
-    }
-
-    public void Play()
-    {
-        OnPlay.Invoke();
-        GameState = GameState.Playing;
+        GameStateEvents[state].Invoke();
+        GameState = state;
     }
 }

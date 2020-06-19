@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField]
     [Tooltip("Max HP of the player")]
     private float _maxHP = 50f;
+    [SerializeField]
     private float _currentHP = 50f;
     public bool IsDead { get; private set; } = false;
 
@@ -22,16 +23,22 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [Tooltip("The transform at which the floating text should be displayed")]
     private Transform _floatingTextAnchor = default;
 
+    private AggroTransmitter _aggroTransmitter = default;
+
     private void Start()
     {
         _currentHP = _maxHP;
+        _aggroTransmitter = GetComponentInChildren<AggroTransmitter>();
 
-        GameStateManager.Instance.OnGameOver.AddListener(Die);
-        EndlessWaveManager.Instance.OnUpdateWave.AddListener(Respawn);
+        GameStateManager.Instance.GameStateEvents[GameState.GameOver].AddListener(Die);
+        // EndlessWaveManager.Instance.OnUpdateWave.AddListener(Respawn);
     }
 
     private void Update()
     {
+        if (IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
+            return;
+
         if (_currentHP < _maxHP)
         {
             _regenTimer -= Time.deltaTime;
@@ -51,16 +58,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (IsDead)
             return;
+        Debug.Log("You died");
         IsDead = true;
+
+        _aggroTransmitter.enabled = false;
     }
 
     public virtual void Respawn()
     {
         if (!IsDead)
             return;
+        Debug.Log("You Respawned");
         IsDead = false;
 
         _regenTimer = _regenRate;
+        _aggroTransmitter.enabled = true;
     }
 
     public void GetHit(float damage, Vector3 position, Vector3 direction)

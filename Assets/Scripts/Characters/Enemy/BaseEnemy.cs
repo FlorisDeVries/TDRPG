@@ -59,10 +59,15 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         {
             agent.SetDestination(currentTarget.position);
         }
+
+        GameStateManager.Instance.GameStateEvents[GameState.GameOver].AddListener(OnGameOver);
     }
 
     protected virtual void Update()
     {
+        if (GameStateManager.Instance.GameState == GameState.GameOver || GameStateManager.Instance.GameState == GameState.Paused)
+            return;
+
         // Get new target each update... Maybe change this to only when targets are added/removed?
         Transform newTarget = _aggroController.GetHighestAggro();
         if (newTarget)
@@ -127,6 +132,14 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Attack()
     {
 
+    }
+
+    /// <summary>
+    /// Called when the player loses the game
+    /// </summary>
+    protected virtual void OnGameOver()
+    {
+        agent.enabled = false;
     }
 
     /// <summary>

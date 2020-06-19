@@ -41,7 +41,7 @@ public class AggroController : MonoBehaviour
 
         foreach (KeyValuePair<AggroTransmitter, Transform> pair in _aggroTargets)
         {
-            if (pair.Value == null)
+            if (pair.Value == null || !pair.Key.enabled)
             {
                 toRemove.Add(pair.Key);
                 continue;

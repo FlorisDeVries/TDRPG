@@ -18,5 +18,7 @@ public class Goal : MonoBehaviour, IDamageable
     private void Die()
     {
         Destroy(gameObject);
+
+        GameStateManager.Instance.SetGameState(GameState.GameOver);
     }
 }

@@ -46,6 +46,9 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
 
     private void FixedUpdate()
     {
+        if (GameStateManager.Instance.GameState == GameState.GameOver)
+            return;
+
         switch (_waveState)
         {
             case WaveState.Spawning:

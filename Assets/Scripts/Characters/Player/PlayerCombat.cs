@@ -9,6 +9,8 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerCombat : MonoBehaviour
 {
+    private PlayerHealth _playerHealth;
+
     [Tooltip("The attacks currently available in the hotbar")]
     [SerializeField]
     private List<AnAttack> _currentAttacks = new List<AnAttack>();
@@ -34,6 +36,8 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
+        _playerHealth = GetComponent<PlayerHealth>();
+
         foreach (AnAttack attack in _currentAttacks)
             attack.SetupAttack(_hotbarParent, _hotBarPrefab);
 
@@ -47,15 +51,18 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (ASpawnable attack in _currentAttacks)
+        {
+            attack.Tick();
+        }
+
+        if (_playerHealth.IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
+            return;
+
         // Firing
         if (_firing && _firePoint)
         {
             _currentAttack?.TrySpawn(_firePoint.position, _firePoint.rotation);
-        }
-
-        foreach (ASpawnable attack in _currentAttacks)
-        {
-            attack.Tick();
         }
     }
 

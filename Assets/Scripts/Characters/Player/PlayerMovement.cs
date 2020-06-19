@@ -61,8 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        if (_playerHealth.IsDead)
+        if (_playerHealth.IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
+        {
+            _characterController.Move(_velocity * Time.deltaTime);
             return;
+        }
 
         // Check jumping
         if ((_jumping || _jumpTimer > 0f) && _groundedTimer > 0f)
