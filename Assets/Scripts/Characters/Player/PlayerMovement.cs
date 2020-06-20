@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_playerHealth.IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
         {
+            AddGravity();
             _characterController.Move(_velocity * Time.deltaTime);
             return;
         }
@@ -92,6 +93,17 @@ public class PlayerMovement : MonoBehaviour
         // Move the character
         _characterController.Move(_moveDirection * Time.deltaTime * _speed);
 
+        AddGravity();
+        _characterController.Move(_velocity * Time.deltaTime);
+
+        // Look at the mouse
+        Vector3 mousePos = Utils.GetPlaneIntersection(transform.position.y);
+        mousePos.y = transform.position.y;
+        transform.LookAt(mousePos);
+    }
+
+    private void AddGravity()
+    {
         // Add gravity
         if (_velocity.y > 0)
         {
@@ -104,13 +116,6 @@ public class PlayerMovement : MonoBehaviour
         {
             _velocity.y += 3f * _gravity * Time.deltaTime;
         }
-
-        _characterController.Move(_velocity * Time.deltaTime);
-
-        // Look at the mouse
-        Vector3 mousePos = Utils.GetPlaneIntersection(transform.position.y);
-        mousePos.y = transform.position.y;
-        transform.LookAt(mousePos);
     }
 
     public void Hit(float damage)

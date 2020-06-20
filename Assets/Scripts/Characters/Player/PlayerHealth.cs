@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _aggroTransmitter = GetComponentInChildren<AggroTransmitter>();
 
         GameStateManager.Instance.GameStateEvents[GameState.GameOver].AddListener(Die);
-        // EndlessWaveManager.Instance.OnUpdateWave.AddListener(Respawn);
+        EndlessWaveManager.Instance.OnUpdateWave.AddListener(Respawn);
     }
 
     private void Update()
@@ -72,6 +72,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         IsDead = false;
 
         _regenTimer = _regenRate;
+        _currentHP = _maxHP;
         _aggroTransmitter.enabled = true;
     }
 

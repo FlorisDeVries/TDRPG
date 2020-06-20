@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 50
+  _currentHP: 50
   _regenRate: 1
   _regenAmount: 1
   _floatingTextAnchor: {fileID: 795380990427367762}

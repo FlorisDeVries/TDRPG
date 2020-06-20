@@ -25,7 +25,7 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     private float _waveCountdown = 5f;
 
 
-    public int CurrentWave { get; private set; } = 1;
+    public int CurrentWave { get; private set; } = 0;
     [SerializeField]
     private WaveState _waveState = WaveState.Waiting;
 
@@ -128,7 +128,7 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
             _wavesLogic.Add(new EndlessWaveLogic(wave));
         }
 
-        CurrentWave = 1;
+        CurrentWave = 0;
         CalculateEnemies();
 
         OnUpdateWave.Invoke();

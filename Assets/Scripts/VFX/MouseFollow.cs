@@ -30,6 +30,13 @@ public class MouseFollow : UnitySingleton<MouseFollow>
 
     private void Update()
     {
+        if (GameStateManager.Instance.GameState == GameState.GameOver || GameStateManager.Instance.GameState == GameState.Paused)
+        {
+            _placeable.SetActive(false);
+            _notPlaceable.SetActive(false);
+            return;
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
