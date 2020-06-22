@@ -23,7 +23,7 @@ TagManager:
   - Objective
   - PlaceableEnvironment
   - Tower
-  - Pickup
+  - PlayerOnly
   - Aggro
   - IgnoreAll
   - 

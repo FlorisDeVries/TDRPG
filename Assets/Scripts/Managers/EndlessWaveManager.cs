@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
 {
-    [System.Serializable]
     enum WaveState
     {
         Spawning,
@@ -21,9 +20,9 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     [SerializeField]
     [Tooltip("How much time there should be in between waves")]
     private float WaveInterval = 5f;
+
     [SerializeField]// For debug
     private float _waveCountdown = 5f;
-
 
     public int CurrentWave { get; private set; } = 0;
     [SerializeField]

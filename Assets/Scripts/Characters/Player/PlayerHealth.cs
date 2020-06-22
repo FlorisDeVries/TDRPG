@@ -23,6 +23,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [Tooltip("The transform at which the floating text should be displayed")]
     private Transform _floatingTextAnchor = default;
 
+    [SerializeField]
+    [Tooltip("Whether gameOver should be triggered on player death")]
+    private bool _gameOverOnDeath = false;
+
     private AggroTransmitter _aggroTransmitter = default;
 
     private void Start()
@@ -31,7 +35,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _aggroTransmitter = GetComponentInChildren<AggroTransmitter>();
 
         GameStateManager.Instance.GameStateEvents[GameState.GameOver].AddListener(Die);
-        EndlessWaveManager.Instance.OnUpdateWave.AddListener(Respawn);
+
+        if (!_gameOverOnDeath)
+            EndlessWaveManager.Instance.OnUpdateWave.AddListener(Respawn);
     }
 
     private void Update()
@@ -58,8 +64,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (IsDead)
             return;
-        Debug.Log("You died");
+
         IsDead = true;
+        if (_gameOverOnDeath)
+            GameStateManager.Instance.SetGameState(GameState.GameOver);
 
         _aggroTransmitter.enabled = false;
     }
@@ -68,7 +76,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (!IsDead)
             return;
-        Debug.Log("You Respawned");
+
         IsDead = false;
 
         _regenTimer = _regenRate;

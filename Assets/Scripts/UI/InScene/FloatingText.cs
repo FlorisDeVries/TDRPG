@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FloatingText : MonoBehaviour
 {
-    [SerializeField]
     private TextMesh _textMesh = default;
 
     private void OnEnable()
@@ -27,5 +26,11 @@ public class FloatingText : MonoBehaviour
     public void DestroyText()
     {
         Destroy(this.gameObject);
+    }
+
+    private void Update()
+    {
+        // transform.LookAt(Camera.main.transform);
+        transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
     }
 }
