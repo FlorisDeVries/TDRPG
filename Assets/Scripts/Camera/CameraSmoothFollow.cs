@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [ExecuteInEditMode]
 public class CameraSmoothFollow : MonoBehaviour
@@ -17,7 +18,16 @@ public class CameraSmoothFollow : MonoBehaviour
     [Tooltip("Offset of position, relative position to the target on our plane")]
     private Vector3 _offset = default;
 
-    // Update is called once per frame
+    private float _height = 0;
+    [SerializeField]
+    private float _radius = 0;
+
+    private void Start()
+    {
+        _height = _offset.y;
+        _radius = Mathf.Sqrt(Mathf.Pow(_offset.z, 2) + Mathf.Pow(_offset.x, 2));
+    }
+
     void Update()
     {
         // Smooth follow the position
@@ -29,4 +39,13 @@ public class CameraSmoothFollow : MonoBehaviour
 
         transform.LookAt(_target);
     }
+
+    #region Input    
+    public void OnRotate(InputValue value)
+    {
+        // Apply move direction
+        Vector2 dir = value.Get<Vector2>().normalized;
+        float direction = dir.x;
+    }
+    #endregion
 }

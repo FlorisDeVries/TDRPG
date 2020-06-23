@@ -14,6 +14,7 @@ public class InformationField : MonoBehaviour
 
     [SerializeField]
     [Tooltip("What information this board should display")]
+    [TextArea]
     private string _informationText = default;
 
     [SerializeField]
@@ -42,7 +43,7 @@ public class InformationField : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        _exclamationMark.SetActive(true);
+        // _exclamationMark.SetActive(true);
         Destroy(_floatingText.gameObject);
         target = null;
     }
@@ -52,7 +53,7 @@ public class InformationField : MonoBehaviour
         if (_floatingText)
         {
             float dist = Vector3.Distance(transform.position, target.position);
-            scalar = (6 - dist) / 5;
+            scalar = Mathf.Min((6 - dist) / 5, .75f);
             _floatingText.transform.localScale = new Vector3(scalar, scalar, 0);
         }
     }
