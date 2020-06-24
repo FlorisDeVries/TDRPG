@@ -46,6 +46,10 @@ public class PlayerCombat : MonoBehaviour
             _currentAttacks[_attackIndex].SetSelected(true);
             _currentAttack = _currentAttacks[_attackIndex];
         }
+        else
+        {
+            _hotbarParent.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -80,6 +84,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void AddAttack(AnAttack attack)
     {
+        if (_currentAttacks.Count == 0)
+            _hotbarParent.gameObject.SetActive(true);
+
         _currentAttacks.Add(attack);
         attack.SetupAttack(_hotbarParent, _hotBarPrefab);
 

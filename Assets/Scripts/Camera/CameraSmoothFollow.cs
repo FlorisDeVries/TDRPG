@@ -64,7 +64,6 @@ public class CameraSmoothFollow : MonoBehaviour
                 _angle = -Mathf.Acos(_direction.x);
         }
 
-        _angle += Mathf.Deg2Rad * _cameraSensitivity * _rotateDirection;
         Vector3 offset = new Vector3(0, _height, 0);
         offset.x = _radius * Mathf.Cos(_angle);
         offset.z = _radius * Mathf.Sin(_angle);
@@ -77,6 +76,7 @@ public class CameraSmoothFollow : MonoBehaviour
         // Apply move direction
         Vector2 dir = value.Get<Vector2>().normalized;
         _rotateDirection = dir.x;
+        _angle += Mathf.PI * .5f * dir.x;
     }
     #endregion
 }
