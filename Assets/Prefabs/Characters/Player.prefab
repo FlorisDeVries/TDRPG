@@ -395,10 +395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059b0c927cb0b284d873a8299e6d2762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 7.5
   _jumpHeight: 7.5
   _gravity: -9.81
   _drag: {x: 5, y: 5, z: 5}
+  _moveDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &8625476815438044563
 MonoBehaviour:
   m_ObjectHideFlags: 0

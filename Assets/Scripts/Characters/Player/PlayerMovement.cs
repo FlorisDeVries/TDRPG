@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _drag = Vector3.one;
 
     private Vector3 _velocity = Vector3.zero;
+
+    [SerializeField]
     private Vector3 _moveDirection = Vector3.zero;
 
     // Start is called before the first frame update
@@ -91,7 +93,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Move the character
-        _characterController.Move(_moveDirection * Time.deltaTime * _speed);
+        // Move direction is local, not taking into account the direction of the camera
+        _characterController.Move(MakeMovementRelative() * Time.deltaTime * _speed);
 
         AddGravity();
         _characterController.Move(_velocity * Time.deltaTime);
@@ -118,8 +121,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Hit(float damage)
+    private Vector3 MakeMovementRelative()
     {
-        Debug.LogError("Implement this behaviour please");
+        // Get forward
+        Vector3 forward = MainCamera.Instance.transform.forward;
+        forward.y = 0;
+        forward.Normalize();
+
+        // Get right
+        Vector3 right = MainCamera.Instance.transform.right;
+        right.y = 0;
+        right.Normalize();
+
+        return forward * _moveDirection.z + right * _moveDirection.x;
     }
 }
