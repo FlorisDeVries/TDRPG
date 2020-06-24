@@ -24,6 +24,7 @@ public class CameraSmoothFollow : MonoBehaviour
 
     private float _height = 0;
     private float _radius = 0;
+    [SerializeField]
     private float _angle = 0;
     private float _rotateDirection = 0;
 
@@ -32,7 +33,10 @@ public class CameraSmoothFollow : MonoBehaviour
         _height = _offset.y;
         _radius = Mathf.Sqrt(Mathf.Pow(_offset.z, 2) + Mathf.Pow(_offset.x, 2));
         Vector2 _direction = new Vector2(_offset.x, _offset.z).normalized;
-        _angle = Mathf.Acos(_direction.x);
+        if (_direction.y >= 0)
+            _angle = Mathf.Acos(_direction.x);
+        else
+            _angle = -Mathf.Acos(_direction.x);
     }
 
     void Update()
@@ -49,6 +53,17 @@ public class CameraSmoothFollow : MonoBehaviour
 
     private Vector3 GetDesiredPosition()
     {
+        if (Application.isEditor && !Application.isPlaying)
+        {
+            _height = _offset.y;
+            _radius = Mathf.Sqrt(Mathf.Pow(_offset.z, 2) + Mathf.Pow(_offset.x, 2));
+            Vector2 _direction = new Vector2(_offset.x, _offset.z).normalized;
+            if (_direction.y >= 0)
+                _angle = Mathf.Acos(_direction.x);
+            else
+                _angle = -Mathf.Acos(_direction.x);
+        }
+
         _angle += Mathf.Deg2Rad * _cameraSensitivity * _rotateDirection;
         Vector3 offset = new Vector3(0, _height, 0);
         offset.x = _radius * Mathf.Cos(_angle);
