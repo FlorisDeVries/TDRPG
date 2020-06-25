@@ -24,8 +24,8 @@ public class CameraSmoothFollow : MonoBehaviour
 
     private float _height = 0;
     private float _radius = 0;
-    [SerializeField]
     private float _angle = 0;
+    private float _targetAngle = 0;
     private float _rotateDirection = 0;
 
     private void Start()
@@ -37,6 +37,7 @@ public class CameraSmoothFollow : MonoBehaviour
             _angle = Mathf.Acos(_direction.x);
         else
             _angle = -Mathf.Acos(_direction.x);
+        _targetAngle = _angle;
     }
 
     void Update()
@@ -62,6 +63,7 @@ public class CameraSmoothFollow : MonoBehaviour
                 _angle = Mathf.Acos(_direction.x);
             else
                 _angle = -Mathf.Acos(_direction.x);
+            _targetAngle = _angle;
         }
 
         Vector3 offset = new Vector3(0, _height, 0);
@@ -76,7 +78,7 @@ public class CameraSmoothFollow : MonoBehaviour
         // Apply move direction
         Vector2 dir = value.Get<Vector2>().normalized;
         _rotateDirection = dir.x;
-        _angle += Mathf.PI * .5f * dir.x;
+        _angle = _angle + .5f * Mathf.PI * dir.x;
     }
     #endregion
 }

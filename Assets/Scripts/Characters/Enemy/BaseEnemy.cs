@@ -148,7 +148,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         // Mark as dead in waveManager
-        EndlessWaveManager.Instance.EnemyDied();
+        if (EndlessWaveManager.Instance)
+            EndlessWaveManager.Instance.EnemyDied();
 
         animator?.SetBool("Alive", false);
         if (_deathParticles)

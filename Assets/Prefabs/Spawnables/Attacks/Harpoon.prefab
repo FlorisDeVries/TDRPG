@@ -4967,7 +4967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01224fbe660032346acf2d5e010e099b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
+  _speed: 35
   _lifeTime: 15
   _damage: 7.5
   _spawnParticles: {fileID: 8460429991067853003, guid: 25364ba7d304891498edd29db0a6fb59,
