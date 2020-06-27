@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/MainMenu.unity
+    guid: 51075995d5e98044ebf0cdcdf700a1fd
+  - enabled: 1
+    path: Assets/Scenes/ProgressionLevels/TutorialLevel.unity
+    guid: 0c4f571450423c24ba7539874d5de7d0
+  - enabled: 1
+    path: Assets/Scenes/Survival/Endless.unity
+    guid: bac91eab62d712f4da546a74c5e0f7af
   m_configObjects: {}

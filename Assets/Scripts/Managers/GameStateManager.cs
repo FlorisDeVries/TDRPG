@@ -34,4 +34,13 @@ public class GameStateManager : UnitySingleton<GameStateManager>
         GameStateEvents[state].Invoke();
         GameState = state;
     }
+
+    public void OnPause()
+    {
+        if (GameState != GameState.Playing || GameState != GameState.Paused)
+            if (GameState == GameState.Paused)
+                SetGameState(GameState.Playing);
+            else
+                SetGameState(GameState.Paused);
+    }
 }

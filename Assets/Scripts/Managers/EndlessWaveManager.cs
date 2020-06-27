@@ -86,7 +86,7 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
             return;
 
         // Wait for all enemies to be killed
-        if (EnemyManager.Instance.IsWaveKilled())
+        if (!EnemyManager.Instance.IsWaveKilled())
             return;
 
         // Setup for next wave(countdown)

@@ -19,9 +19,12 @@ public class FadeOnGameState : MonoBehaviour
     [Tooltip("Whether we should fade in or out")]
     private bool _fadeOut = true;
 
+    private CanvasGroup _canvasGroup = default;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _canvasGroup = GetComponent<CanvasGroup>();
 
         GameStateManager.Instance.GameStateEvents[_gameState].AddListener(Fade);
     }
@@ -32,5 +35,8 @@ public class FadeOnGameState : MonoBehaviour
             _animator.SetTrigger("FadeOut");
         else
             _animator.SetTrigger("FadeIn");
+
+        if (_canvasGroup)
+            _canvasGroup.interactable = !_fadeOut;
     }
 }
