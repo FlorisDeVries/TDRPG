@@ -68,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
             attack.Tick();
         }
 
-        if (_playerHealth.IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
+        if (_playerHealth.IsDead || GameStateManager.Instance.GameState != GameState.Playing)
             return;
 
         // Firing
@@ -94,6 +94,9 @@ public class PlayerCombat : MonoBehaviour
     {
         if (_currentAttacks.Count == 0)
             _hotbarParent.gameObject.SetActive(true);
+
+        if (_currentAttacks.Contains(attack))
+            return;
 
         _currentAttacks.Add(attack);
         attack.SetupAttack(_hotbarParent, _hotBarPrefab);

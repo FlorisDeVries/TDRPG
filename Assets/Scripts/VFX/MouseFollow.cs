@@ -30,7 +30,7 @@ public class MouseFollow : UnitySingleton<MouseFollow>
 
     private void Update()
     {
-        if (GameStateManager.Instance.GameState == GameState.GameOver || GameStateManager.Instance.GameState == GameState.Paused)
+        if (GameStateManager.Instance.GameState != GameState.Playing)
         {
             _placeable.SetActive(false);
             _notPlaceable.SetActive(false);

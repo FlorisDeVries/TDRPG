@@ -63,10 +63,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        if (_playerHealth.IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
+        if (_playerHealth.IsDead || GameStateManager.Instance.GameState != GameState.Playing)
         {
-            AddGravity();
-            _characterController.Move(_velocity * Time.deltaTime);
+            if (GameStateManager.Instance.GameState == GameState.Paused)
+            {
+                AddGravity();
+                _characterController.Move(_velocity * Time.deltaTime);
+            }
             return;
         }
 

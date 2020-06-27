@@ -67,7 +67,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     protected virtual void Update()
     {
-        if (GameStateManager.Instance.GameState == GameState.GameOver || GameStateManager.Instance.GameState == GameState.Paused)
+        if (GameStateManager.Instance.GameState != GameState.Playing)
             return;
 
         // Get new target each update... Maybe change this to only when targets are added/removed?

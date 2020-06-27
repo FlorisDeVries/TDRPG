@@ -56,7 +56,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (GameStateManager.Instance.GameState == GameState.GameOver)
+        if (GameStateManager.Instance.GameState != GameState.Playing)
             return;
         if (IsDead)
         {
