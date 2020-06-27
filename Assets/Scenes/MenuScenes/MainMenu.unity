@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d480c2f81471b4f9c3f1493214dbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attack: {fileID: 11400000, guid: 4c497854b312fb842a9564fbe56bf66f, type: 2}
+  _attack: {fileID: 11400000, guid: cf8d46781a4196e458424078a099b0a3, type: 2}
   _unlockedColor: {r: 0.95, g: 0.95, b: 0.95, a: 1}
   _lockedColor: {r: 0.5686275, g: 0.5686275, b: 0.5686275, a: 1}
   _hiddenColor: {r: 0.5686275, g: 0.5686275, b: 0.5686275, a: 0.011764706}

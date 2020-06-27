@@ -24,7 +24,7 @@ public class EndLevelPortal : UnitySingleton<EndLevelPortal>
             ProgressionManager.Instance.UnlockAttack(a);
             GameObject rewardUI = Instantiate(_rewardUIPrefab);
             rewardUI.transform.SetParent(_rewardUIParent);
-            rewardUI.GetComponent<Image>().sprite = a.Image;
+            rewardUI.GetComponent<Image>().sprite = a.Sprite;
         }
     }
 

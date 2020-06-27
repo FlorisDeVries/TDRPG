@@ -10,7 +10,7 @@ public class AnAttack : ASpawnable
 {
     [Header("Spawn Properties")]
     [Tooltip("Image/Icon used to display this attack in the hotbar")]
-    public Sprite Image = default;
+    public Sprite Sprite = default;
 }
 
 /// <summary>
@@ -42,7 +42,7 @@ public class AnAttackLogic : ASpawnableLogic
     {
         _hotbarItem = Instantiate(prefab).GetComponent<HotbarItem>();
         _hotbarItem.transform.SetParent(parent);
-        _hotbarItem.SetImage((spawnable as AnAttack).Image);
+        _hotbarItem.SetImage((spawnable as AnAttack).Sprite);
     }
 
     public void SetSelected(bool selected)

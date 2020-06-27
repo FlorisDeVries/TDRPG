@@ -36,6 +36,7 @@ public class UnlockIcon : MonoBehaviour
     void Start()
     {
         _attackIcon = GetComponent<Image>();
+        _attackIcon.sprite = _attack.Sprite;
         if (ProgressionManager.Instance.UnlockedAttacks.Contains(_attack))
         {
             if (_hidden)
