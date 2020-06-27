@@ -14,7 +14,22 @@ public class ASpawnable : ScriptableObject
 
     [Tooltip("How much time should there be in between spawning this")]
     public float Cooldown = 1;
+}
+
+/// <summary>
+/// Wrapper class to keep instances and settings separate
+/// </summary>
+public class ASpawnableLogic : MonoBehaviour
+{
+    // The spawnable this logic controls
+    protected ASpawnable spawnable = default;
+
     protected float cooldownTimer = 0;
+
+    public ASpawnableLogic(ASpawnable spawnable)
+    {
+        this.spawnable = spawnable;
+    }
 
     /// <summary>
     /// Tries to spawn the spawnable
@@ -38,7 +53,7 @@ public class ASpawnable : ScriptableObject
     /// /// <param name="SpawnPos">At what position to spawn the spawnable</param>
     protected virtual void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
-        GameObject gO = Instantiate(Prefab, spawnPos, spawnRot);
+        GameObject gO = Instantiate(spawnable.Prefab, spawnPos, spawnRot);
         gO.transform.SetParent(CharactersParent.Instance.transform);
     }
 
@@ -47,7 +62,7 @@ public class ASpawnable : ScriptableObject
     /// </summary>
     protected virtual bool CanBeSpawned()
     {
-        return cooldownTimer >= Cooldown;
+        return cooldownTimer >= spawnable.Cooldown;
     }
 
     /// <summary>

@@ -13,8 +13,9 @@ public class PlayerCombat : MonoBehaviour
 
     [Tooltip("The attacks currently available in the hotbar")]
     [SerializeField]
-    private List<AnAttack> _currentAttacks = new List<AnAttack>();
-    private AnAttack _currentAttack = default;
+    private List<AnAttack> _startAttacks = new List<AnAttack>();
+    private List<AnAttackLogic> _currentAttacks = new List<AnAttackLogic>();
+    private AnAttackLogic _currentAttack = default;
 
     [SerializeField]
     [Tooltip("Prefab used to create the hotbar")]
@@ -40,14 +41,18 @@ public class PlayerCombat : MonoBehaviour
         List<AnAttack> unlockedAttacks = ProgressionManager.Instance.UnlockedAttacks;
         foreach (AnAttack a in unlockedAttacks)
         {
-            if (!_currentAttacks.Contains(a))
-                _currentAttacks.Add(a);
+            if (!_startAttacks.Contains(a))
+                _startAttacks.Add(a);
         }
 
         _playerHealth = GetComponent<PlayerHealth>();
 
-        foreach (AnAttack attack in _currentAttacks)
-            attack.SetupAttack(_hotbarParent, _hotBarPrefab);
+        foreach (AnAttack attack in _startAttacks)
+        {
+            AnAttackLogic attackLogic = new AnAttackLogic(attack);
+            attackLogic.SetupAttack(_hotbarParent, _hotBarPrefab);
+            _currentAttacks.Add(attackLogic);
+        }
 
         if (_currentAttacks.Count > 0)
         {
@@ -63,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (ASpawnable attack in _currentAttacks)
+        foreach (ASpawnableLogic attack in _currentAttacks)
         {
             attack.Tick();
         }
@@ -95,11 +100,13 @@ public class PlayerCombat : MonoBehaviour
         if (_currentAttacks.Count == 0)
             _hotbarParent.gameObject.SetActive(true);
 
-        if (_currentAttacks.Contains(attack))
+        AnAttackLogic newAttack = new AnAttackLogic(attack);
+
+        if (_currentAttacks.Contains(newAttack))
             return;
 
-        _currentAttacks.Add(attack);
-        attack.SetupAttack(_hotbarParent, _hotBarPrefab);
+        _currentAttacks.Add(newAttack);
+        newAttack.SetupAttack(_hotbarParent, _hotBarPrefab);
 
         if (_currentAttacks.Count == 1)
             SetNewAttack(0);

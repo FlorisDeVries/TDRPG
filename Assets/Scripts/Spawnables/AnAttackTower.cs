@@ -18,9 +18,16 @@ public class AnAttackTower : ATower
 
     [Tooltip("What this tower wants to target")]
     public LayerMask TargetMask = default;
+}
+
+public class AnAttackTowerLogic : ATowerLogic
+{
+    public AnAttackTowerLogic(ASpawnable spawnable) : base(spawnable)
+    {
+    }
 
     protected override void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
-        Instantiate(Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseAttackTower>()?.Setup(this);
+        Instantiate(spawnable.Prefab, MouseFollow.Instance.transform.position, Quaternion.identity).GetComponentInChildren<BaseAttackTower>()?.Setup(spawnable as AnAttackTower);
     }
 }
