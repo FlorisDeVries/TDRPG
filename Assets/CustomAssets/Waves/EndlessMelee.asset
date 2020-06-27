@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EndlessMelee
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3106193004920552433, guid: c89b2a026f6e1604ca5928fdf7a68ca1, type: 3}
-  Base: 2
-  Multiplier: 0.5
+  Base: 3
+  Multiplier: 1
   WaveDelay: 0
   SpawnInterval: 0.1

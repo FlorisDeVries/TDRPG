@@ -127,4 +127,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             floatingText.SetColor(Color.red);
         }
     }
+
+    public void GetHit(float damage, Vector3 position, Vector3 direction, AggroTransmitter transmitter)
+    {
+        // Since player does not do much with aggro transmitters this can be just be redirected
+        GetHit(damage, position, direction);
+    }
 }

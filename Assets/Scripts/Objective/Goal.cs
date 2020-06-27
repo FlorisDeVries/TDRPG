@@ -15,6 +15,11 @@ public class Goal : MonoBehaviour, IDamageable
             Die();
     }
 
+    public void GetHit(float damage, Vector3 position, Vector3 direction, AggroTransmitter transmitter)
+    {
+        GetHit(damage, position, direction);
+    }
+
     private void Die()
     {
         Destroy(gameObject);

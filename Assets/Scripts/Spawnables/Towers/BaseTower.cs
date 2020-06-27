@@ -20,6 +20,11 @@ public class BaseTower : MonoBehaviour, IDamageable
             Die();
     }
 
+    public void GetHit(float damage, Vector3 position, Vector3 direction, AggroTransmitter transmitter)
+    {
+        GetHit(damage, position, direction);
+    }
+
     protected virtual void Die()
     {
         Destroy(this.gameObject);

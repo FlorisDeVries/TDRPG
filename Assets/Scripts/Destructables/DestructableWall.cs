@@ -13,4 +13,9 @@ public class DestructableWall : MonoBehaviour, IDamageable
         if (_hitPoints < 0)
             Destroy(this.gameObject);
     }
+
+    public void GetHit(float damage, Vector3 position, Vector3 direction, AggroTransmitter transmitter)
+    {
+        GetHit(damage, position, direction);
+    }
 }

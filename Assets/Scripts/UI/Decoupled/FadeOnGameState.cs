@@ -37,6 +37,9 @@ public class FadeOnGameState : MonoBehaviour
             _animator.SetTrigger("FadeIn");
 
         if (_canvasGroup)
+        {
             _canvasGroup.interactable = !_fadeOut;
+            _canvasGroup.blocksRaycasts = !_fadeOut;
+        }
     }
 }

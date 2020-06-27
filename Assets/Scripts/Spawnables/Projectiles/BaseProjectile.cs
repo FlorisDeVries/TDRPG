@@ -25,6 +25,10 @@ public class BaseProjectile : MonoBehaviour
     [Tooltip("What layers this projectile can hit")]
     private LayerMask _hitMask = default;
 
+    [SerializeField]
+    [Tooltip("What aggrotransmitter send this attack")]
+    private AggroTransmitter _transmitter = default;
+
     protected virtual void Start()
     {
         if (_spawnParticles)
@@ -53,7 +57,10 @@ public class BaseProjectile : MonoBehaviour
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable != null && Utils.IsInLayerMask(other.gameObject.layer, _hitMask))
-            damageable.GetHit(_damage, transform.position, transform.forward);
+            if (_transmitter == null)
+                damageable.GetHit(_damage, transform.position, transform.forward);
+            else
+                damageable.GetHit(_damage, transform.position, transform.forward, _transmitter);
     }
 
     protected virtual void Die()

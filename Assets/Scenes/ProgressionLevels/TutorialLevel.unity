@@ -686,8 +686,8 @@ CanvasGroup:
   m_GameObject: {fileID: 30850703}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!95 &30850708
 Animator:
@@ -7248,8 +7248,8 @@ CanvasGroup:
   m_GameObject: {fileID: 575194169}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!95 &575194174
 Animator:
@@ -12215,8 +12215,8 @@ CanvasGroup:
   m_GameObject: {fileID: 1146526619}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!95 &1146526623
 Animator:
@@ -18890,7 +18890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834691552}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0.000000749014}
-  m_LocalPosition: {x: 63.3, y: 0.5, z: 62}
+  m_LocalPosition: {x: 63.25, y: 0.5, z: 62}
   m_LocalScale: {x: 50, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 439431833}
@@ -19774,7 +19774,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves: []
   WaveInterval: 5
-  _waveCountdown: 5
   _waveState: 0
   OnUpdateWave:
     m_PersistentCalls:

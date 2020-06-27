@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4081977888794879800, guid: a88363f3291d0724899dc0a095ea9bf9, type: 3}
   Base: 4
-  Multiplier: 2
+  Multiplier: 3
   WaveDelay: 1
   SpawnInterval: 0.1

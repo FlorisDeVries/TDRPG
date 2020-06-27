@@ -21,8 +21,7 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     [Tooltip("How much time there should be in between waves")]
     private float WaveInterval = 5f;
 
-    [SerializeField]// For debug
-    private float _waveCountdown = 5f;
+    public float WaveCountdown { get; private set; } = 5f;
 
     public int CurrentWave { get; private set; } = 0;
     [SerializeField]
@@ -91,7 +90,7 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
 
         // Setup for next wave(countdown)
         OnUpdateWave.Invoke();
-        _waveCountdown = WaveInterval;
+        WaveCountdown = WaveInterval;
         _waveState = WaveState.Counting;
     }
 
@@ -101,8 +100,8 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
             return;
 
         // Countdown and reset spawning when done
-        _waveCountdown -= Time.deltaTime;
-        if (_waveCountdown > 0)
+        WaveCountdown -= Time.deltaTime;
+        if (WaveCountdown > 0)
             return;
 
         CurrentWave++;

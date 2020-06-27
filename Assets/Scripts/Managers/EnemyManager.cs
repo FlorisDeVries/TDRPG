@@ -57,7 +57,6 @@ public class EnemyManager : UnitySingleton<EnemyManager>
 
     public bool IsWaveKilled()
     {
-        Debug.Log($"Max {MaxEnemies} | Killed {EnemiesKilled} | Alive {EnemiesAlive}");
         return EnemiesKilled >= MaxEnemies && EnemiesAlive <= 0;
     }
 }

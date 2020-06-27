@@ -68,7 +68,14 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Update()
     {
         if (GameStateManager.Instance.GameState != GameState.Playing)
+        {
+            agent.speed = 0;
             return;
+        }
+        else
+        {
+            agent.speed = speed;
+        }
 
         // Get new target each update... Maybe change this to only when targets are added/removed?
         Transform newTarget = _aggroController.GetHighestAggro();
@@ -89,13 +96,14 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         return currentTarget && Vector3.Distance(transform.position, currentTarget.position) < _attackRange;
     }
 
+
     /// <summary>
     /// Called when this entity gets hit
     /// </summary>
     /// <param name="damage">How many damage is inflicted</param>
     /// <param name="position">Where were we hit</param>
     /// <param name="direction">In what direction where we hit</param>
-    public void GetHit(float damage, Vector3 pos, Vector3 direction)
+    public void GetHit(float damage, Vector3 position, Vector3 direction)
     {
         if (_currentHP <= 0)
             return;
@@ -106,7 +114,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         // Play particle hitEffect
         if (_hitParticles)
         {
-            GameObject hitEffect = Instantiate(_hitParticles, pos + direction.normalized * 0.5f, Quaternion.FromToRotation(Vector3.up, direction));
+            GameObject hitEffect = Instantiate(_hitParticles, position + direction.normalized * 0.5f, Quaternion.FromToRotation(Vector3.up, direction));
             hitEffect.transform.forward = direction;
         }
 
@@ -126,6 +134,21 @@ public class BaseEnemy : MonoBehaviour, IDamageable
             floatingText.SetText(_currentHP.ToString());
             floatingText.SetColor(Color.red);
         }
+    }
+
+    /// /// <summary>
+    /// Called when this entity gets hit
+    /// </summary>
+    /// <param name="damage">How many damage is inflicted</param>
+    /// <param name="position">Where were we hit</param>
+    /// <param name="direction">In what direction where we hit</param>
+    /// <param name="transmitter">What aggro transmitter hit us</param>
+    public void GetHit(float damage, Vector3 position, Vector3 direction, AggroTransmitter transmitter)
+    {
+        // Do something with the transmitter
+
+        // Handle hit
+        GetHit(damage, position, direction);
     }
 
     /// <summary>
