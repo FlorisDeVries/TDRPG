@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8420b173afdd0b9439697e40cf4416f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aggroValue: 101
+  _aggroValue: 1
   _aggroRange: 35
+  AggroModifier: 5
 --- !u!1 &943749512
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,12 +413,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac20f6930955734b9e18664bcf515e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentAttacks: []
+  _startAttacks: []
   _hotBarPrefab: {fileID: 9204056287220287134, guid: 8990e5db6d3e9cb44b7b8dc0ed8ec716,
     type: 3}
   _hotbarParent: {fileID: 0}
   _firePoint: {fileID: 8625476814837810088}
-  _attackIndex: 0
 --- !u!114 &2476500378049853540
 MonoBehaviour:
   m_ObjectHideFlags: 0

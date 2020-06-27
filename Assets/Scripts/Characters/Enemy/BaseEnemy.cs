@@ -146,6 +146,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     public void GetHit(float damage, Vector3 position, Vector3 direction, AggroTransmitter transmitter)
     {
         // Do something with the transmitter
+        _aggroController.AddAggro(transmitter, damage);
 
         // Handle hit
         GetHit(damage, position, direction);

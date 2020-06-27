@@ -24,6 +24,12 @@ public class AggroController : MonoBehaviour
         targets.Add(target);
     }
 
+    public void AddAggro(AggroTransmitter target, float value)
+    {
+        if (_aggroModifier.ContainsKey(target))
+            _aggroModifier[target] += value * target.AggroModifier;
+    }
+
     public void RemoveAggroTarget(AggroTransmitter target)
     {
         _aggroTargets.Remove(target);

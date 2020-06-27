@@ -12,6 +12,9 @@ public class AggroTransmitter : MonoBehaviour
     [Tooltip("The range that the aggro reaches")]
     private float _aggroRange = 5f;
 
+    [Tooltip("The modifier applied to damage done to add aggro")]
+    public float AggroModifier = 5f;
+
     private void Start()
     {
         this.gameObject.layer = LayerMask.NameToLayer("Aggro");
