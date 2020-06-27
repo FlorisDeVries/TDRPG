@@ -8,6 +8,10 @@ public class BasePickup : MonoBehaviour
     [Tooltip("What attack should be pickup up")]
     private AnAttack _pickUp = default;
 
+    [SerializeField]
+    [Tooltip("Whether picking this up should add to the rewards")]
+    private bool _addToRewards = false;
+
     private void OnTriggerEnter(Collider other)
     {
         PlayerCombat player = other.gameObject.GetComponentInChildren<PlayerCombat>();
@@ -15,6 +19,9 @@ public class BasePickup : MonoBehaviour
         {
             GivePickUp(player);
         }
+
+        if (_addToRewards)
+            EndLevelPortal.Instance.AddReward(_pickUp);
     }
     protected virtual void GivePickUp(PlayerCombat player)
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndLevelPortal : MonoBehaviour
+public class EndLevelPortal : UnitySingleton<EndLevelPortal>
 {
     [SerializeField]
     [Tooltip("What attacks does the player recieve as rewards")]
@@ -26,5 +26,10 @@ public class EndLevelPortal : MonoBehaviour
             rewardUI.transform.SetParent(_rewardUIParent);
             rewardUI.GetComponent<Image>().sprite = a.Image;
         }
+    }
+
+    public void AddReward(AnAttack attack)
+    {
+        _missionRewards.Add(attack);
     }
 }

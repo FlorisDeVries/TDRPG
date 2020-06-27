@@ -20,17 +20,38 @@ public class UnlockIcon : MonoBehaviour
     [Tooltip("The locked color")]
     private Color _lockedColor = default;
 
+    [SerializeField]
+    [Tooltip("The locked color")]
+    private Color _hiddenColor = default;
+
+    [SerializeField]
+    [Tooltip("Whether this pickup is hidden")]
+    private bool _hidden = false;
+
+    [SerializeField]
+    [Tooltip("The hidden overlay")]
+    private GameObject _hiddenOverlay = default;
+
     // Start is called before the first frame update
     void Start()
     {
         _attackIcon = GetComponent<Image>();
         if (ProgressionManager.Instance.UnlockedAttacks.Contains(_attack))
         {
+            if (_hidden)
+            {
+                _hiddenOverlay?.SetActive(false);
+            }
             _attackIcon.color = _unlockedColor;
         }
         else
         {
             _attackIcon.color = _lockedColor;
+            if (_hidden)
+            {
+                _attackIcon.color = _hiddenColor;
+                _hiddenOverlay?.SetActive(true);
+            }
         }
     }
 }
