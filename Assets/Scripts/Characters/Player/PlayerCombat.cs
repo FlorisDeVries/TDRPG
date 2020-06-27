@@ -107,13 +107,19 @@ public class PlayerCombat : MonoBehaviour
 
     public void AddAttack(AnAttack attack)
     {
+        if (_startAttacks.Contains(attack))
+            return;
+
         if (_currentAttacks.Count == 0)
             _hotbarParent.gameObject.SetActive(true);
 
-        AnAttackLogic newAttack = new AnAttackLogic(attack, _aggroTransmitter);
-
-        if (_currentAttacks.Contains(newAttack))
-            return;
+        AnAttackLogic newAttack;
+        if (attack.GetType() == typeof(AnAttackTower))
+            newAttack = new AnAttackTowerLogic(attack);
+        else if (attack.GetType() == typeof(ATower))
+            newAttack = new ATowerLogic(attack);
+        else
+            newAttack = new AnAttackLogic(attack, _aggroTransmitter);
 
         _currentAttacks.Add(newAttack);
         newAttack.SetupAttack(_hotbarParent, _hotBarPrefab);
