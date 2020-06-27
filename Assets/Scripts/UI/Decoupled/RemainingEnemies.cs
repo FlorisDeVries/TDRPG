@@ -14,13 +14,12 @@ public class RemainingEnemies : MonoBehaviour
     {
         _text = GetComponent<TMP_Text>();
 
-        EndlessWaveManager.Instance.OnUpdateWave.AddListener(UpdateText);
-        EndlessWaveManager.Instance.OnUpdateEnemyCount.AddListener(UpdateText);
+        EnemyManager.Instance.OnUpdateEnemyCount.AddListener(UpdateText);
         UpdateText();
     }
 
     private void UpdateText()
     {
-        _text.text = $"{EndlessWaveManager.Instance.EnemiesAlive.current} / {EndlessWaveManager.Instance.EnemiesAlive.max}";
+        _text.text = $"{EnemyManager.Instance.EnemiesAlive} / {EnemyManager.Instance.MaxEnemies}";
     }
 }

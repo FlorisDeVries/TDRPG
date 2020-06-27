@@ -23,9 +23,23 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [Tooltip("The transform at which the floating text should be displayed")]
     private Transform _floatingTextAnchor = default;
 
+    [Header("Death stuff")]
     [SerializeField]
     [Tooltip("Whether gameOver should be triggered on player death")]
     private bool _gameOverOnDeath = false;
+
+    [SerializeField]
+    [Tooltip("Whether the player should respawn on timer(or wait for an external force to respawn him)")]
+    private bool _respawnOnTimer = false;
+
+    [SerializeField]
+    [Tooltip("How long the player should stay dead, before respawning")]
+    private float _respawnInterval = 5f;
+    private float _respawnTimer = 0;
+
+    [SerializeField]
+    [Tooltip("Where the player should respawn")]
+    private Transform _respawnPoint;
 
     private AggroTransmitter _aggroTransmitter = default;
 
@@ -42,8 +56,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (IsDead || GameStateManager.Instance.GameState == GameState.GameOver)
+        if (GameStateManager.Instance.GameState == GameState.GameOver)
             return;
+        if (IsDead)
+        {
+            if (_respawnOnTimer)
+            {
+                _respawnTimer -= Time.deltaTime;
+                if (_respawnTimer <= 0)
+                    Respawn();
+            }
+            return;
+        }
 
         if (_currentHP < _maxHP)
         {
@@ -70,6 +94,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             GameStateManager.Instance.SetGameState(GameState.GameOver);
 
         _aggroTransmitter.enabled = false;
+        _respawnTimer = _respawnInterval;
     }
 
     public virtual void Respawn()
@@ -78,6 +103,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             return;
 
         IsDead = false;
+
+        transform.position = _respawnPoint.position;
 
         _regenTimer = _regenRate;
         _currentHP = _maxHP;

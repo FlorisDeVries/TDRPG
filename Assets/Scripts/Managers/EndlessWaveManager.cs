@@ -28,18 +28,14 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     [SerializeField]
     private WaveState _waveState = WaveState.Waiting;
 
-    [SerializeField]
-    public (int max, int current) EnemiesAlive = (0, 0);
-
     private List<BaseSpawner> _spawners = new List<BaseSpawner>();
 
     [HideInInspector]
     public UnityEvent OnUpdateWave = new UnityEvent();
-    [HideInInspector]
-    public UnityEvent OnUpdateEnemyCount = new UnityEvent();
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         Reset();
     }
 
@@ -66,6 +62,9 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     #region WaveStates
     private void SpawningStateTick()
     {
+        if (_wavesLogic.Count == 0)
+            return;
+
         bool done = true;
         foreach (EndlessWaveLogic behaviour in _wavesLogic)
         {
@@ -79,8 +78,11 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
 
     private void WaitingStateTick()
     {
+        if (_wavesLogic.Count == 0)
+            return;
+
         // Wait for all enemies to be killed
-        if (EnemiesAlive.current > 0)
+        if (EnemyManager.Instance.IsWaveKilled())
             return;
 
         // Setup for next wave(countdown)
@@ -91,6 +93,9 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
 
     private void CountingStateTick()
     {
+        if (_wavesLogic.Count == 0)
+            return;
+
         // Countdown and reset spawning when done
         _waveCountdown -= Time.deltaTime;
         if (_waveCountdown > 0)
@@ -105,12 +110,6 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     private BaseSpawner GetRandomSpawner()
     {
         return _spawners[Random.Range(0, _spawners.Count)];
-    }
-
-    public void EnemyDied()
-    {
-        EnemiesAlive.current--;
-        OnUpdateEnemyCount.Invoke();
     }
 
     public void AddSpawner(BaseSpawner spawner)
@@ -128,10 +127,9 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
         }
 
         CurrentWave = 0;
-        CalculateEnemies();
+        EnemyManager.Instance.CalculateEnemiesForWave(_wavesLogic);
 
         OnUpdateWave.Invoke();
-        OnUpdateEnemyCount.Invoke();
 
         _waveState = WaveState.Counting;
     }
@@ -143,19 +141,8 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
             waveLogic.Reset();
         }
 
-        CalculateEnemies();
+        EnemyManager.Instance.CalculateEnemiesForWave(_wavesLogic);
 
         OnUpdateWave.Invoke();
-        OnUpdateEnemyCount.Invoke();
-    }
-
-    private void CalculateEnemies()
-    {
-        int i = 0;
-        foreach (EndlessWaveLogic waveLogic in _wavesLogic)
-        {
-            i += waveLogic.CalculateEnemyCount(CurrentWave);
-        }
-        EnemiesAlive = (i, i);
     }
 }

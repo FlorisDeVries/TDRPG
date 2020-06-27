@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803d89274a5edeb49a8915c722604150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   _maxHP: 10
   _floatingTextAnchor: {fileID: 2143427942}
   _hitParticles: {fileID: 479588556655620366, guid: 0100d12937b4d9941b30d7a236a2bb42,

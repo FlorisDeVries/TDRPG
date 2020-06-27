@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aggroValue: 101
-  _aggroRange: 20
+  _aggroRange: 35
 --- !u!1 &943749512
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +436,9 @@ MonoBehaviour:
   _regenAmount: 1
   _floatingTextAnchor: {fileID: 795380990427367762}
   _gameOverOnDeath: 1
+  _respawnOnTimer: 1
+  _respawnInterval: 5
+  _respawnPoint: {fileID: 0}
 --- !u!1001 &8625476815066335075
 PrefabInstance:
   m_ObjectHideFlags: 0

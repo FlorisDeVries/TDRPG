@@ -44,6 +44,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        EnemyManager.Instance.RegisterEnemy();
+
         // Getting required components
         agent = GetComponentInParent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -148,8 +150,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         // Mark as dead in waveManager
-        if (EndlessWaveManager.Instance)
-            EndlessWaveManager.Instance.EnemyDied();
+        EnemyManager.Instance.EnemyDied();
 
         animator?.SetBool("Alive", false);
         if (_deathParticles)
