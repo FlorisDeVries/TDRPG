@@ -35,6 +35,11 @@ public class BaseProjectile : MonoBehaviour
             Instantiate(_spawnParticles, transform.position, transform.rotation);
     }
 
+    public void SetupProjectile(AggroTransmitter transmitter)
+    {
+        _transmitter = transmitter;
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {

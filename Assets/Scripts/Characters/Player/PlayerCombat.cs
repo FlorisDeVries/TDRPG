@@ -31,12 +31,15 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     [Tooltip("The position for the projectiles to be fired")]
     private Transform _firePoint = default;
+    private AggroTransmitter _aggroTransmitter = default;
 
-    [SerializeField]
     private int _attackIndex = 0;
 
     private void Start()
     {
+        // GetComponents
+        _aggroTransmitter = GetComponentInChildren<AggroTransmitter>();
+
         // Add all unlocked attacks to the player kit
         List<AnAttack> unlockedAttacks = ProgressionManager.Instance.UnlockedAttacks;
         foreach (AnAttack a in unlockedAttacks)
@@ -49,7 +52,14 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (AnAttack attack in _startAttacks)
         {
-            AnAttackLogic attackLogic = new AnAttackLogic(attack);
+            AnAttackLogic attackLogic;
+            if (attack.GetType() == typeof(AnAttackTower))
+                attackLogic = new AnAttackTowerLogic(attack);
+            else if (attack.GetType() == typeof(ATower))
+                attackLogic = new ATowerLogic(attack);
+            else
+                attackLogic = new AnAttackLogic(attack, _aggroTransmitter);
+
             attackLogic.SetupAttack(_hotbarParent, _hotBarPrefab);
             _currentAttacks.Add(attackLogic);
         }
@@ -100,7 +110,7 @@ public class PlayerCombat : MonoBehaviour
         if (_currentAttacks.Count == 0)
             _hotbarParent.gameObject.SetActive(true);
 
-        AnAttackLogic newAttack = new AnAttackLogic(attack);
+        AnAttackLogic newAttack = new AnAttackLogic(attack, _aggroTransmitter);
 
         if (_currentAttacks.Contains(newAttack))
             return;

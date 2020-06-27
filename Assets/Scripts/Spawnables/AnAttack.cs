@@ -19,10 +19,16 @@ public class AnAttack : ASpawnable
 public class AnAttackLogic : ASpawnableLogic
 {
     private HotbarItem _hotbarItem = default;
+    private AggroTransmitter _transmitter = default;
 
     public AnAttackLogic(ASpawnable spawnable) : base(spawnable)
     {
 
+    }
+
+    public AnAttackLogic(ASpawnable spawnable, AggroTransmitter transmitter) : base(spawnable)
+    {
+        _transmitter = transmitter;
     }
 
     public void SetupAttack(Transform parent, GameObject prefab)
@@ -46,8 +52,17 @@ public class AnAttackLogic : ASpawnableLogic
 
     protected override void Spawn(Vector3 spawnPos, Quaternion spawnRot)
     {
-        base.Spawn(spawnPos, spawnRot);
-        CameraShake.Instance.Shake(Random.Range(.01f, .05f));
+        if (_transmitter == null)
+        {
+            base.Spawn(spawnPos, spawnRot);
+            CameraShake.Instance.Shake(Random.Range(.01f, .05f));
+        }
+        else
+        {
+            GameObject gO = Instantiate(spawnable.Prefab, spawnPos, spawnRot);
+            gO.transform.SetParent(CharactersParent.Instance.transform);
+            gO.GetComponent<BaseProjectile>()?.SetupProjectile(_transmitter);
+        }
     }
 
     public override void Tick()
