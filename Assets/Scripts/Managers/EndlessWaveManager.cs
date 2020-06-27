@@ -33,10 +33,14 @@ public class EndlessWaveManager : UnitySingleton<EndlessWaveManager>
     [HideInInspector]
     public UnityEvent OnUpdateWave = new UnityEvent();
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-        Reset();
+        _wavesLogic = new List<EndlessWaveLogic>();
+
+        foreach (EndlessWave wave in _waves)
+        {
+            _wavesLogic.Add(new EndlessWaveLogic(wave));
+        }
     }
 
     private void FixedUpdate()
