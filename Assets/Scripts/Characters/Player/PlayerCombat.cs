@@ -36,6 +36,14 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
+        // Add all unlocked attacks to the player kit
+        List<AnAttack> unlockedAttacks = ProgressionManager.Instance.UnlockedAttacks;
+        foreach (AnAttack a in unlockedAttacks)
+        {
+            if (!_currentAttacks.Contains(a))
+                _currentAttacks.Add(a);
+        }
+
         _playerHealth = GetComponent<PlayerHealth>();
 
         foreach (AnAttack attack in _currentAttacks)
