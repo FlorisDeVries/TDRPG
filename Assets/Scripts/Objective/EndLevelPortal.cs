@@ -17,6 +17,9 @@ public class EndLevelPortal : UnitySingleton<EndLevelPortal>
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag != "Player")
+            return;
+
         GameStateManager.Instance.SetGameState(GameState.Victory);
 
         foreach (AnAttack a in _missionRewards)

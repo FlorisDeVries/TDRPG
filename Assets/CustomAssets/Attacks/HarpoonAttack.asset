@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3518537014238956797, guid: 98b14ea18fcf28342b608773da14e979, type: 3}
   Cooldown: 2
-  Image: {fileID: 21300000, guid: f27333f6ab0a7d7499f9386d07acd2d9, type: 3}
+  Sprite: {fileID: 21300000, guid: f27333f6ab0a7d7499f9386d07acd2d9, type: 3}
